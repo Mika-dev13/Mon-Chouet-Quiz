@@ -16,6 +16,9 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   title: "Mon Chouet' Quiz",
   description: 'Des quiz amusants et éducatifs pour les petits explorateurs !',
+  icons: {
+    icon: '/logo.svg',
+  },
 };
 
 export default function RootLayout({
