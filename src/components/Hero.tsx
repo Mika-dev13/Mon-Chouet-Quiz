@@ -4,7 +4,7 @@ import chouette from '../../public/maitresse-chouette.webp';
 
 const Hero = () => {
   return (
-    <section className='relative bg-cyan-200 py-4 lg:py-10 w-full mt-12 rounded-md'>
+    <section className='relative bg-cyan-200 py-4 lg:py-10 w-full mt-16 rounded-md'>
       <h1 className='font-bold font-cursive text-center text-3xl uppercase lg:text-6xl '>
         Mon Chouet&apos; Quiz
       </h1>

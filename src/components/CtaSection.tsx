@@ -22,7 +22,7 @@ const CtaSection = () => {
             connaissances !
           </p>
 
-          <Button className='uppercase'>à l&apos;aventure !</Button>
+          <Button>À l&apos;aventure !</Button>
         </div>
       </div>
     </section>
