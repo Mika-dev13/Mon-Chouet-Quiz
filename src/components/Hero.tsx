@@ -4,7 +4,7 @@ import chouette from '../../public/maitresse-chouette.webp';
 
 const Hero = () => {
   return (
-    <section className='relative bg-cyan-200 py-4 lg:py-10 w-full mt-16 rounded-md'>
+    <section className='relative bg-cyan-200 py-4 lg:py-10 w-full mt-6 lg:mt-16 rounded-md'>
       <h1 className='font-bold font-cursive text-center text-3xl uppercase lg:text-6xl '>
         Mon Chouet&apos; Quiz
       </h1>
@@ -16,8 +16,8 @@ const Hero = () => {
       </div>
       <Image
         src={chouette}
-        alt=''
-        className='absolute top-16 lg:top-24 left-6 lg:left-16 -rotate-6 w-[90px] lg:w-[200px] drop-shadow-lg'
+        alt='Maîtresse chouette'
+        className='absolute top-16 lg:top-24 left-4 lg:left-16 -rotate-6 w-[80px] lg:w-[200px] drop-shadow-lg'
       />
     </section>
   );

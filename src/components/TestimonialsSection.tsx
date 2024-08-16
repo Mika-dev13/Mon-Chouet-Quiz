@@ -2,11 +2,11 @@ import TestimonyCard from './TestimonyCard';
 
 const TestimonialsSection = () => {
   return (
-    <section className='my-36'>
-      <h2 className='text-center lg:text-2xl font-semibold mb-16'>
+    <section className='lg:my-36 my-12'>
+      <h2 className='text-center lg:text-2xl font-semibold lg:mb-16 mb-8'>
         La vérité sort de la bouche des enfants{' '}
       </h2>
-      <div className='grid grid-cols-3 gap-6'>
+      <div className='lg:grid grid-cols-3 gap-6 space-y-4 lg:space-y-0'>
         <TestimonyCard
           content='" Les quiz sont vraiment géniaux et j&apos;aime beaucoup les images colorées. "'
           name='Hugo, 7 ans'

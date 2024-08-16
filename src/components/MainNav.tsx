@@ -9,7 +9,7 @@ const MainNav = () => {
           <Link href='/'>Accueil</Link>
         </li>
         <li>
-          <Link href='/'>Quiz</Link>
+          <Link href='/quizzes'>Quiz</Link>
         </li>
         <li>
           <Link href='/'>Tarifs</Link>

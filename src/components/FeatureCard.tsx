@@ -21,7 +21,7 @@ const FeatureCard = ({
     >
       <Image src={icon} alt='' width={50} />
       <h2 className='font-semibold mb-3 mt-4'>{title}</h2>
-      <div className='text-center'>{description}</div>
+      <div className='text-center text-sm lg:text-base'>{description}</div>
       {/* <div
         className={`before:block before:absolute before:${borderColor} before:inset-0 before:rounded-md before:-z-10 before:translate-x-2 before:translate-y-2`}
       ></div> */}

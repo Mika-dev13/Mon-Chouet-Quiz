@@ -19,11 +19,11 @@ const TestimonyCard = ({ content, name, bgColor }: Props) => {
           <Image src={star} alt='étoile' />
         </div>
         <blockquote>
-          <p className='font-medium '>{content}</p>
+          <p className='font-medium'>{content}</p>
         </blockquote>
         <figcaption className='flex items-center mt-6 space-x-3 rtl:space-x-reverse'>
           <div className='flex items-center divide-x-2 rtl:divide-x-reverse divide-gray-900'>
-            <cite className='pe-3 font-medium'>{name}</cite>
+            <cite className='pe-3 font-medium text-sm'>{name}</cite>
           </div>
         </figcaption>
       </figure>

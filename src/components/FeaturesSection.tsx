@@ -5,12 +5,12 @@ import jeu from '../../public/jeu.svg';
 
 const FeaturesSection = () => {
   return (
-    <section className='mt-36'>
-      <h2 className='lg:text-2xl font-semibold text-center mb-16'>
+    <section className='mt-8 lg:mt-36'>
+      <h2 className='text-md lg:text-2xl font-semibold text-center mb-6 lg:mb-16'>
         Avec Mon Chouet’ Quiz, chaque enfant peut explorer des sujets
         passionnants de manière interactive et amusante.
       </h2>
-      <div className='grid grid-cols-3 gap-6 lg:h-72'>
+      <div className='lg:grid grid-cols-3 gap-6 lg:h-72 space-y-4 lg:space-y-0'>
         <FeatureCard
           title='Des quiz enrichissants'
           description='Des quiz sur des sujets originaux et passionnants adaptés à tous les âges.'
