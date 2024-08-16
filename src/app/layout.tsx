@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import { Ribeye, Montserrat } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 
 const ribeye = Ribeye({
   weight: '400',
@@ -29,10 +28,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='fr' className={`${montserrat.variable} ${ribeye.variable}`}>
-      <body className={`${montserrat.className}`}>
-        {/* <Header /> */}
-        {children}
-      </body>
+      <body className={`${montserrat.className}`}>{children}</body>
     </html>
   );
 }

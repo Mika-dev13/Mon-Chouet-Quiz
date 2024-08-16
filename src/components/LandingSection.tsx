@@ -26,7 +26,7 @@ const LandingSection = () => {
         </p>
       </section>
       <section className='bg-teal-600 h-36 lg:h-72 flex items-center lg:justify-center relative rounded-md'>
-        <h2 className='font-cursive text-xl lg:text-4xl text-white lg:text-center w-64 lg:w-[550px] ml-6 lg:ml-0'>
+        <h2 className='font-cursive text-xl lg:text-5xl text-white lg:text-center w-64 lg:w-[600px] ml-6 lg:ml-0'>
           Offrez à vos enfants un outil éducatif{' '}
           <span className='text-amber-400'>captivant</span> et{' '}
           <span className='text-rose-400'>amusant</span>.

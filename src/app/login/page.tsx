@@ -3,6 +3,7 @@ import logo from '../logo.svg';
 import LoginForm from '@/forms/loginForm';
 import { Button } from '@/components/ui/button';
 import googleIcon from '../../../public/google-icon.svg';
+
 const LoginPage = () => {
   return (
     <main className='grid grid-cols-2 h-screen'>
