@@ -30,9 +30,8 @@ export default function RootLayout({
   return (
     <html lang='fr' className={`${montserrat.variable} ${ribeye.variable}`}>
       <body className={`${montserrat.className}`}>
-        <Header />
+        {/* <Header /> */}
         {children}
-        <Footer />
       </body>
     </html>
   );

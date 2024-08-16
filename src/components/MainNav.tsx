@@ -15,8 +15,11 @@ const MainNav = () => {
           <Link href='/'>Tarifs</Link>
         </li>
         <li className='pl-8'>
-          <Button className='bg-yellow-300 hover:bg-yellow-200 text-stone-900 font-bold'>
-            Se connecter
+          <Button
+            asChild
+            className='bg-yellow-300 hover:bg-yellow-200 text-stone-900 font-bold'
+          >
+            <Link href='/login'>Connexion</Link>
           </Button>
         </li>
       </ul>
