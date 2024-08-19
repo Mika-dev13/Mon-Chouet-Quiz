@@ -1,8 +1,7 @@
 import Image from 'next/image';
 import logo from '../logo.svg';
 import LoginForm from '@/forms/loginForm';
-import { Button } from '@/components/ui/button';
-import googleIcon from '../../../public/google-icon.svg';
+import GoogleSingInButton from '@/components/GoogleSingInButton';
 
 const LoginPage = () => {
   return (
@@ -27,10 +26,7 @@ const LoginPage = () => {
             </span>
           </div>
         </div>
-        <Button variant={'outline'} className='mt-6'>
-          <Image src={googleIcon} alt='' width={20} className='mr-2' />
-          Google
-        </Button>
+        <GoogleSingInButton />
       </div>
     </main>
   );
