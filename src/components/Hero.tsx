@@ -17,7 +17,7 @@ const Hero = () => {
       <Image
         src={chouette}
         alt='Maîtresse chouette'
-        className='absolute top-16 lg:top-24 left-4 lg:left-16 -rotate-6 w-[80px] lg:w-[200px] drop-shadow-lg'
+        className='absolute top-16 lg:top-24 left-4 lg:left-10 -rotate-6 w-[80px] lg:w-[200px] drop-shadow-lg'
       />
     </section>
   );

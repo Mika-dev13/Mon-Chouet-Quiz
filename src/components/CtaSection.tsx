@@ -12,7 +12,7 @@ const CtaSection = () => {
         <Image
           src={foret}
           alt='forêt'
-          className='w-full lg:max-h-96 h-60 object-cover mb-8 lg:mb-0'
+          className='w-full lg:h-96 h-60 object-cover mb-8 lg:mb-0'
         />
         <div className='flex flex-col items-center justify-center px-6 lg:px-9'>
           <p className='lg:text-xl mb-4 lg:mb-8 text-center'>

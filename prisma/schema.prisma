@@ -12,9 +12,24 @@ datasource db {
 
 model Quiz {
   id        String   @id @default(cuid())
-  title     String
+  title     String   
+  slug      String   @unique
   description String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   private   Boolean? @default(false)
+  themeId   String
+  theme     Theme    @relation(fields: [themeId], references: [id])
+}
+
+model Theme {
+  id        String   @id @default(cuid())
+  title     String   
+  slug      String   @unique
+  description String
+  image     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  private   Boolean? @default(false)
+  quizzes   Quiz[]
 }
