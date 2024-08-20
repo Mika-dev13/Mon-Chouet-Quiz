@@ -1,8 +1,6 @@
 import Link from 'next/link';
 import { Button } from './ui/button';
-import UserAvatar from './UserAvatar';
 import { auth } from '../../auth';
-import SignOutButton from './SignOutButton';
 import UserNameMenu from './UserNameMenu';
 
 const MainNav = async () => {
@@ -15,14 +13,11 @@ const MainNav = async () => {
           <Link href='/'>Accueil</Link>
         </li>
         <li>
-          <Link href='/quizzes'>Quiz</Link>
+          <Link href='/themes'>Quiz</Link>
         </li>
         <li>
           <Link href='/'>Tarifs</Link>
         </li>
-        {/* <li>
-          <UserAvatar />
-        </li> */}
         <li className='pl-8'>
           {!session ? (
             <Button

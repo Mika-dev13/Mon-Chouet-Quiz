@@ -7,12 +7,12 @@ const UserAvatar = async () => {
   if (!session) return null;
 
   return (
-    <div className='flex items-center gap-2 ml-8 capitalize'>
+    <div className='ml-8'>
       <Avatar>
-        <AvatarImage src='https://github.com/shadcn.png' />
+        {/* <AvatarImage src='https://github.com/shadcn.png' /> */}
+        <AvatarImage src={session.user?.image ?? ''} />
         <AvatarFallback>CN</AvatarFallback>
       </Avatar>
-      {session.user?.name}
     </div>
   );
 };

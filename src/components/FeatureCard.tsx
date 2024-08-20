@@ -13,7 +13,6 @@ const FeatureCard = ({
   description,
   icon,
   bgColor,
-  borderColor,
 }: FeatureCardProps) => {
   return (
     <article
