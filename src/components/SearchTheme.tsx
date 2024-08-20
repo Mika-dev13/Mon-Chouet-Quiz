@@ -60,7 +60,7 @@ const SearchTheme = ({ themes }: SearchThemeProps) => {
         />
       </div>
 
-      <div className='grid grid-cols-4 gap-4'>
+      <div className='grid grid-cols-4 gap-4 mb-32'>
         {filteredThemes.length > 0 ? (
           filteredThemes.map((theme) => (
             <ThemeCard
@@ -68,7 +68,7 @@ const SearchTheme = ({ themes }: SearchThemeProps) => {
               title={theme.title}
               image={theme.image}
               href={`/themes/${stringToSlug(theme.title)}`}
-              bgColor={theme.bgColor ?? ''}
+              bgColor={theme.bgColor ?? 'bg-gray-100'}
             />
           ))
         ) : (
