@@ -1,11 +1,6 @@
 import Header from '@/components/Header';
 import SearchTheme from '@/components/SearchTheme';
-import SelectThemes from '@/components/SelectThemes';
-import ThemeCard from '@/components/ThemeCard';
-
 import prisma from '@/lib/db';
-
-import stringToSlug from '@/utils/slugStringFormating';
 
 const ThemesPage = async () => {
   const themes = await prisma.theme.findMany();
