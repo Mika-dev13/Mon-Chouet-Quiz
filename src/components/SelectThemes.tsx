@@ -40,11 +40,13 @@ const SelectThemes = ({ themes }: SelectThemesProps) => {
       <SelectContent>
         <SelectGroup>
           <SelectLabel>Thèmes</SelectLabel>
-          {themes.map((theme) => (
-            <SelectItem key={theme.id} value={theme.title}>
-              {theme.title}
-            </SelectItem>
-          ))}
+          {themes
+            .sort((a, b) => a.title.localeCompare(b.title))
+            .map((theme) => (
+              <SelectItem key={theme.id} value={theme.title}>
+                {theme.title}
+              </SelectItem>
+            ))}
         </SelectGroup>
       </SelectContent>
     </Select>

@@ -22,12 +22,15 @@ const ThemePage = async ({ params }: ThemePageProps) => {
     <>
       <Header />
       <main className='lg:w-[1080px] mx-auto mt-16'>
-        <h1 className='text-2xl font-semibold'>Theme Page</h1>
-        <p>{theme?.title}</p>
-        <p>{theme?.description}</p>
-        <ul>
+        <h1 className='text-2xl font-semibold mb-8'>Theme : {theme?.title}</h1>
+        <ul className='grid grid-cols-3'>
           {theme?.quizzes.map((quiz) => (
-            <li key={quiz.id}>{quiz.title}</li>
+            <div
+              key={quiz.id}
+              className='border-2 rounded-md grid place-items-center h-52'
+            >
+              <li>{quiz.title}</li>
+            </div>
           ))}
         </ul>
       </main>
