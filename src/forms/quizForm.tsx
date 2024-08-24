@@ -51,7 +51,11 @@ const QuizForm = ({ quiz }: QuizFormProps) => {
   };
 
   const checkAnswer = (answer: string) => {
-    const correctAnswer = currentQuestion.answers.find((a) => a.status);
+    const correctAnswer = currentQuestion.answers.find(
+      (answer) => answer.status
+    );
+
+    console.log('correctAnswer', correctAnswer);
 
     if (answer === correctAnswer?.response) {
       const newCorrectResult = {
@@ -75,8 +79,8 @@ const QuizForm = ({ quiz }: QuizFormProps) => {
 
   const onSubmit = (data: z.infer<typeof formSchema>) => {
     const resultAnswer = checkAnswer(data.answers);
-    console.log(selectedAnswer);
-    console.log('result', resultAnswer);
+    // console.log(selectedAnswer);
+    // console.log('result', resultAnswer);
     nextQuestion();
   };
 
@@ -86,8 +90,11 @@ const QuizForm = ({ quiz }: QuizFormProps) => {
         <form onSubmit={form.handleSubmit(onSubmit)}>
           {currentQuestion ? (
             <>
-              <div className='mb-4'>
+              <div className='flex justify-between items-center mb-4'>
                 <Label className='text-lg'>{currentQuestion.title}</Label>
+                <span className='font-semibold'>
+                  {currentQuestionIndex + 1} / {questions.length}
+                </span>
               </div>
               <FormField
                 control={form.control}
@@ -124,7 +131,16 @@ const QuizForm = ({ quiz }: QuizFormProps) => {
               </Button>{' '}
             </>
           ) : (
-            <p>Fin du quiz</p>
+            <div className='text-lg text-center mt-8'>
+              <p>Félicitations ! Vous avez terminé le quiz.</p>
+              <p>
+                Score : {result.score} / {questions.length}
+              </p>
+              <p>
+                Réponses correctes : {result.correctAnswers} /{' '}
+                {questions.length}
+              </p>
+            </div>
           )}
         </form>
       </Form>
