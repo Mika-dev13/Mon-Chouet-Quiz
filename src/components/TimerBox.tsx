@@ -8,12 +8,16 @@ import {
   Timer as TimerIcon,
 } from 'lucide-react';
 
-const TimerBox = () => {
-  const [time, setTime] = useState(120); // Temps de départ en secondes (2 minutes)
-  const [isActive, setIsActive] = useState(false); // Indique si le timer est actif
+type TimerBoxProps = {
+  isActive: boolean;
+  setIsActive: (isActive: boolean) => void;
+};
+
+const TimerBox = ({ isActive, setIsActive }: TimerBoxProps) => {
+  const [time, setTime] = useState(120);
+
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Fonction pour démarrer le décompte
   const startTimer = () => {
     if (!isActive) {
       setIsActive(true);
@@ -26,11 +30,10 @@ const TimerBox = () => {
           }
           return prevTime - 1;
         });
-      }, 1000); // Décrémente chaque seconde
+      }, 1000);
     }
   };
 
-  // Fonction pour mettre le décompte en pause
   const pauseTimer = () => {
     setIsActive(false);
     if (intervalRef.current) {
@@ -38,10 +41,9 @@ const TimerBox = () => {
     }
   };
 
-  // Fonction pour réinitialiser le décompte
   const resetTimer = () => {
     pauseTimer();
-    setTime(120); // Réinitialise à 120 secondes (2 minutes)
+    setTime(120);
   };
 
   // Nettoyer l'intervalle lorsque le composant est démonté
@@ -53,7 +55,6 @@ const TimerBox = () => {
     };
   }, []);
 
-  // Convertir les secondes en format mm:ss
   const formatTime = (time: number) => {
     const minutes = Math.floor(time / 60);
     const seconds = time % 60;
@@ -66,7 +67,11 @@ const TimerBox = () => {
         <button
           onClick={startTimer}
           disabled={isActive}
-          className='bg-lime-100 p-1 rounded-md'
+          className={
+            isActive
+              ? 'bg-lime-100 p-1 rounded-md'
+              : 'bg-lime-100 p-1 rounded-md animate-bounce'
+          }
         >
           <PlayCircle size='36' color='#65a30d' strokeWidth={1} />
         </button>

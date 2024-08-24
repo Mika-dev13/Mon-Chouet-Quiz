@@ -15,9 +15,12 @@ import {
 } from '@/components/ui/form';
 import { useState } from 'react';
 import { QuizWithAll } from '@/utils/type';
+import Image from 'next/image';
+import chouet from '../../public/win-chouette.webp';
 
 type QuizFormProps = {
   quiz: QuizWithAll;
+  isActive: boolean;
 };
 type QuizResult = {
   score: number;
@@ -29,7 +32,7 @@ const formSchema = z.object({
   answers: z.string(),
 });
 
-const QuizForm = ({ quiz }: QuizFormProps) => {
+const QuizForm = ({ quiz, isActive }: QuizFormProps) => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswer, setselectedAnswer] = useState<string>('');
   const [result, setResult] = useState<QuizResult>({
@@ -85,7 +88,20 @@ const QuizForm = ({ quiz }: QuizFormProps) => {
   };
 
   return (
-    <div>
+    <div className='relative flex-1 bg-cyan-200 p-4 rounded-md'>
+      {!isActive && (
+        <div className='absolute flex gap-8 bg-cyan-500 inset-0 w-full rounded-md px-16'>
+          <Image
+            src={chouet}
+            alt='Chouette'
+            width={150}
+            className='object-cover'
+          />
+          <div className='flex items-center justify-center flex-1 text-white font-semibold text-xl'>
+            <p>Hey ! Clique sur le bouton à droite pour commencer le quiz</p>
+          </div>
+        </div>
+      )}
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           {currentQuestion ? (

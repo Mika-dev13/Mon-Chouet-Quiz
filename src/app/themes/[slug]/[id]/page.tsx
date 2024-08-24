@@ -1,7 +1,8 @@
 import Header from '@/components/Header';
+import QuizSection from '@/components/QuizSection';
 import TimerBox from '@/components/TimerBox';
 import { Button } from '@/components/ui/button';
-import QuizForm from '@/forms/quizForm';
+import QuizForm from '@/forms/QuizForm';
 import prisma from '@/lib/db';
 import { notFound } from 'next/navigation';
 
@@ -46,7 +47,7 @@ const QuizPage = async ({ params }: QuizPageProps) => {
             <h1 className='text-xl font-semibold'>
               {quiz.theme.title} : {quiz?.title}
             </h1>
-            <div className='flex flex-col text-sm'>
+            <div className='flex flex-col'>
               <p>
                 Niveau :{' '}
                 <span
@@ -68,17 +69,10 @@ const QuizPage = async ({ params }: QuizPageProps) => {
             </div>
           </div>
         </section>
-        <section className='flex gap-4 mt-16'>
-          <div className='bg-teal-100 p-4 rounded-md flex-1'>
-            <QuizForm quiz={quiz} />
-          </div>
-          <div className='px-4'>
-            <TimerBox />
-            {/* <Button className='bg-yellow-300 hover:bg-yellow-200 text-stone-800 w-full'>
+        <QuizSection quiz={quiz} />
+        {/* <Button className='bg-yellow-300 hover:bg-yellow-200 text-stone-800 w-full'>
               Sauvegarder
             </Button> */}
-          </div>
-        </section>
       </main>
     </>
   );
