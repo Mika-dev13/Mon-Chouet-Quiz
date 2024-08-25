@@ -41,7 +41,7 @@ const QuizPage = async ({ params }: QuizPageProps) => {
   return (
     <>
       <Header />
-      <main className='lg:w-[1080px] mx-auto mt-24'>
+      <main className='lg:w-[1080px] mx-auto mt-16'>
         <section className='flex justify-between'>
           <div>
             <h1 className='text-xl font-semibold'>

@@ -1,0 +1,57 @@
+import { QuizWithAll } from '@/utils/type';
+import RadialScore from './RadialScore';
+
+type QuizFormProps = {
+  quiz: QuizWithAll;
+  result: QuizResult;
+};
+type QuizResult = {
+  score: number;
+  correctAnswers: number;
+  wrongAnswers: number;
+};
+
+const ShowQuizResult = ({ quiz, result }: QuizFormProps) => {
+  const { questions } = quiz;
+
+  const resultInPourcentage = (
+    (result.correctAnswers / questions.length) *
+    100
+  ).toFixed();
+
+  return (
+    <div className='grid place-content-center text-lg mt-8'>
+      <div className='grid grid-cols-2 gap-8'>
+        <div className='grid place-content-center'>
+          <p className='font-cursive text-2xl text-pink-600 font-semibold'>
+            Le Quiz est terminé !
+          </p>
+          <p>
+            Nombres de réponses correctes : {result.correctAnswers} /{' '}
+            {questions.length}
+          </p>
+        </div>
+        <div className='flex justify-center'>
+          <RadialScore score={resultInPourcentage} />
+        </div>
+      </div>
+      <div className='bg-cyan-100 p-4 rounded-md mt-4'>
+        <h2 className='text-xl font-semibold mt-6'>
+          Voici les bonnes réponses:
+        </h2>
+        <ul className='mt-2'>
+          {questions.map((question, index) => (
+            <li key={index} className='flex flex-col'>
+              <span className='font-semibold'>{question.title}: </span>
+              <span>
+                {question.answers.find((answer) => answer.status)?.response}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+};
+
+export default ShowQuizResult;

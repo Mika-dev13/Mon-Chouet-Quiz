@@ -17,6 +17,7 @@ import { useState } from 'react';
 import { QuizWithAll } from '@/utils/type';
 import Image from 'next/image';
 import chouet from '../../public/win-chouette.webp';
+import ShowQuizResult from '@/components/ShowQuizResult';
 
 type QuizFormProps = {
   quiz: QuizWithAll;
@@ -88,14 +89,16 @@ const QuizForm = ({ quiz, isActive }: QuizFormProps) => {
   };
 
   return (
-    <div className='relative flex-1 bg-cyan-200 p-4 rounded-md'>
+    <div className='relative flex-1 bg-cyan-200 px-4 pb-8 mb-16 rounded-md'>
       {!isActive && (
-        <div className='absolute flex gap-8 bg-cyan-500 inset-0 w-full rounded-md px-16'>
+        <div className='absolute z-10 flex items-center gap-8 bg-cyan-500 inset-0 w-full rounded-md px-16'>
           <Image
             src={chouet}
             alt='Chouette'
-            width={150}
             className='object-cover'
+            width={200}
+            height={200}
+            loading='lazy'
           />
           <div className='flex items-center justify-center flex-1 text-white font-semibold text-xl'>
             <p>Hey ! Clique sur le bouton à droite pour commencer le quiz</p>
@@ -147,16 +150,7 @@ const QuizForm = ({ quiz, isActive }: QuizFormProps) => {
               </Button>{' '}
             </>
           ) : (
-            <div className='text-lg text-center mt-8'>
-              <p>Félicitations ! Vous avez terminé le quiz.</p>
-              <p>
-                Score : {result.score} / {questions.length}
-              </p>
-              <p>
-                Réponses correctes : {result.correctAnswers} /{' '}
-                {questions.length}
-              </p>
-            </div>
+            <ShowQuizResult quiz={quiz} result={result} />
           )}
         </form>
       </Form>

@@ -11,3 +11,17 @@ export type QuizWithAll = Prisma.QuizGetPayload<{
     };
   };
 }>;
+
+//generic type for the questions
+export type Question = {
+  id: number;
+  title: string;
+  answers: Answer[];
+};
+
+//generic type for the answers
+export type Answer = {
+  id: number;
+  response: string;
+  status: boolean;
+};
