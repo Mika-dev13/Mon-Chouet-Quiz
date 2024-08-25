@@ -31,19 +31,17 @@ const ShowQuizResult = ({ quiz, result }: QuizFormProps) => {
             {questions.length}
           </p>
         </div>
-        <div className='flex justify-center'>
+        <div className='flex justify-center bg-cyan-100 p-4 rounded-md'>
           <RadialScore score={resultInPourcentage} />
         </div>
       </div>
       <div className='bg-cyan-100 p-4 rounded-md mt-4'>
-        <h2 className='text-xl font-semibold mt-6'>
-          Voici les bonnes réponses:
-        </h2>
+        <h2 className='text-lg font-semibold'>Voici les bonnes réponses:</h2>
         <ul className='mt-2'>
           {questions.map((question, index) => (
             <li key={index} className='flex flex-col'>
               <span className='font-semibold'>{question.title}: </span>
-              <span>
+              <span className='text-sm'>
                 {question.answers.find((answer) => answer.status)?.response}
               </span>
             </li>

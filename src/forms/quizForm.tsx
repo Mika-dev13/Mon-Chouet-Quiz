@@ -18,6 +18,7 @@ import { QuizWithAll } from '@/utils/type';
 import Image from 'next/image';
 import chouet from '../../public/win-chouette.webp';
 import ShowQuizResult from '@/components/ShowQuizResult';
+import TypeWriter from '@/components/TypeWriter';
 
 type QuizFormProps = {
   quiz: QuizWithAll;
@@ -91,7 +92,7 @@ const QuizForm = ({ quiz, isActive }: QuizFormProps) => {
   return (
     <div className='relative flex-1 bg-cyan-200 px-4 pb-8 mb-16 rounded-md'>
       {!isActive && (
-        <div className='absolute z-10 flex items-center gap-8 bg-cyan-500 inset-0 w-full rounded-md px-16'>
+        <div className='absolute z-10 flex items-center  bg-cyan-500 inset-0 w-full rounded-md px-16'>
           <Image
             src={chouet}
             alt='Chouette'
@@ -100,8 +101,10 @@ const QuizForm = ({ quiz, isActive }: QuizFormProps) => {
             height={200}
             loading='lazy'
           />
-          <div className='flex items-center justify-center flex-1 text-white font-semibold text-xl'>
-            <p>Hey ! Clique sur le bouton à droite pour commencer le quiz</p>
+
+          <div className='relative flex items-center justify-center flex-1 bg-cyan-600 text-white text-xl rounded-md p-4 h-[120px]'>
+            <TypeWriter text='Hey ! Clique sur le bouton à droite pour commencer le quiz.' />
+            <div className='absolute bottom-1/2 left-0 transform -translate-x-2/3 translate-y-full rotate-90 w-0 h-0 border-t-8 border-t-cyan-600 border-x-8 border-x-transparent'></div>
           </div>
         </div>
       )}
