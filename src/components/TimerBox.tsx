@@ -7,16 +7,37 @@ import {
   StopCircle,
   Timer as TimerIcon,
 } from 'lucide-react';
+import { QuizWithAll } from '@/utils/type';
+
+type QuizResult = {
+  score: number;
+  correctAnswers: number;
+  wrongAnswers: number;
+};
 
 type TimerBoxProps = {
   isActive: boolean;
   setIsActive: (isActive: boolean) => void;
+  setCurrentQuestionIndex: (index: number) => void;
+  currentQuestionIndex: number;
+  setResult: React.Dispatch<React.SetStateAction<QuizResult>>;
+  quiz: QuizWithAll;
 };
 
-const TimerBox = ({ isActive, setIsActive }: TimerBoxProps) => {
+const TimerBox = ({
+  quiz,
+  isActive,
+  setIsActive,
+  setCurrentQuestionIndex,
+  currentQuestionIndex,
+  setResult,
+}: TimerBoxProps) => {
   const [time, setTime] = useState(120);
-
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const [pauseTime, setPauseTime] = useState(false);
+
+  const { questions } = quiz;
+  const currentQuestion = questions[currentQuestionIndex];
 
   const startTimer = () => {
     if (!isActive) {
@@ -36,14 +57,25 @@ const TimerBox = ({ isActive, setIsActive }: TimerBoxProps) => {
 
   const pauseTimer = () => {
     setIsActive(false);
+
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
     }
   };
 
+  // if (currentQuestionIndex > questions.length - 1) {
+  //   pauseTimer();
+  // }
+
   const resetTimer = () => {
     pauseTimer();
     setTime(120);
+    setCurrentQuestionIndex(0);
+    setResult({
+      score: 0,
+      correctAnswers: 0,
+      wrongAnswers: 0,
+    });
   };
 
   // Nettoyer l'intervalle lorsque le composant est démonté
@@ -76,11 +108,7 @@ const TimerBox = ({ isActive, setIsActive }: TimerBoxProps) => {
           <PlayCircle size='36' color='#65a30d' strokeWidth={1} />
         </button>
 
-        <button
-          onClick={pauseTimer}
-          disabled={!isActive}
-          className='bg-lime-100 p-1 rounded-md'
-        >
+        <button onClick={pauseTimer} className='bg-lime-100 p-1 rounded-md'>
           {' '}
           <PauseCircle size='36' color='#65a30d' strokeWidth={1} />
         </button>

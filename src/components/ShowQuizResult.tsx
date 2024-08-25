@@ -20,7 +20,7 @@ const ShowQuizResult = ({ quiz, result }: QuizFormProps) => {
   ).toFixed();
 
   return (
-    <div className='grid place-content-center text-lg mt-8'>
+    <div className='grid place-content-center text-lg mt-8 animate-fade animate-duration-300'>
       <div className='grid grid-cols-2 gap-8'>
         <div className='grid place-content-center'>
           <p className='font-cursive text-2xl text-pink-600 font-semibold'>
@@ -40,7 +40,7 @@ const ShowQuizResult = ({ quiz, result }: QuizFormProps) => {
         <ul className='mt-2'>
           {questions.map((question, index) => (
             <li key={index} className='flex flex-col'>
-              <span className='font-semibold'>{question.title}: </span>
+              <span className='font-medium'>{question.title}: </span>
               <span className='text-sm'>
                 {question.answers.find((answer) => answer.status)?.response}
               </span>

@@ -34,7 +34,7 @@ const LandingSection = () => {
         <Image
           src={maitreChouette}
           alt='Maître chouette'
-          className='absolute top-16 -right-2 lg:-right-8 w-32 lg:w-96 rotate-6 drop-shadow-lg'
+          className='absolute top-16 -right-2 lg:-right-8 w-32 lg:w-80 rotate-6 drop-shadow-lg'
         />
       </section>
     </>

@@ -23,6 +23,10 @@ import TypeWriter from '@/components/TypeWriter';
 type QuizFormProps = {
   quiz: QuizWithAll;
   isActive: boolean;
+  currentQuestionIndex: number;
+  setCurrentQuestionIndex: React.Dispatch<React.SetStateAction<number>>;
+  result: QuizResult;
+  setResult: React.Dispatch<React.SetStateAction<QuizResult>>;
 };
 type QuizResult = {
   score: number;
@@ -34,14 +38,15 @@ const formSchema = z.object({
   answers: z.string(),
 });
 
-const QuizForm = ({ quiz, isActive }: QuizFormProps) => {
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+const QuizForm = ({
+  quiz,
+  isActive,
+  currentQuestionIndex,
+  setCurrentQuestionIndex,
+  result,
+  setResult,
+}: QuizFormProps) => {
   const [selectedAnswer, setselectedAnswer] = useState<string>('');
-  const [result, setResult] = useState<QuizResult>({
-    score: 0,
-    correctAnswers: 0,
-    wrongAnswers: 0,
-  });
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -52,15 +57,13 @@ const QuizForm = ({ quiz, isActive }: QuizFormProps) => {
   const currentQuestion = questions[currentQuestionIndex];
 
   const nextQuestion = () => {
-    setCurrentQuestionIndex((prev) => prev + 1);
+    setCurrentQuestionIndex((prev: number) => prev + 1);
   };
 
   const checkAnswer = (answer: string) => {
     const correctAnswer = currentQuestion.answers.find(
       (answer) => answer.status
     );
-
-    console.log('correctAnswer', correctAnswer);
 
     if (answer === correctAnswer?.response) {
       const newCorrectResult = {
@@ -90,9 +93,9 @@ const QuizForm = ({ quiz, isActive }: QuizFormProps) => {
   };
 
   return (
-    <div className='relative flex-1 bg-cyan-200 px-4 pb-8 mb-16 rounded-md'>
+    <div className='relative flex-1 bg-cyan-200 px-4 py-4 mb-16 rounded-md'>
       {!isActive && (
-        <div className='absolute z-10 flex items-center  bg-cyan-500 inset-0 w-full rounded-md px-16'>
+        <div className='absolute z-10 flex items-center bg-cyan-500 inset-0 w-full rounded-md px-16 animate-fade animate-duration-150'>
           <Image
             src={chouet}
             alt='Chouette'
@@ -101,8 +104,7 @@ const QuizForm = ({ quiz, isActive }: QuizFormProps) => {
             height={200}
             loading='lazy'
           />
-
-          <div className='relative flex items-center justify-center flex-1 bg-cyan-600 text-white text-xl rounded-md p-4 h-[120px]'>
+          <div className='relative flex items-center justify-center flex-1 bg-cyan-600 text-white text-xl rounded-md p-4 h-[120px] '>
             <TypeWriter text='Hey ! Clique sur le bouton à droite pour commencer le quiz.' />
             <div className='absolute bottom-1/2 left-0 transform -translate-x-2/3 translate-y-full rotate-90 w-0 h-0 border-t-8 border-t-cyan-600 border-x-8 border-x-transparent'></div>
           </div>

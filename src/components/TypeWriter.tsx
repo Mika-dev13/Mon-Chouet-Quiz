@@ -13,7 +13,7 @@ const Typewriter = ({ text }: TypewriterProps) => {
       const timer = setInterval(() => {
         setCurrentText((prevText) => prevText + text[currentIndex]);
         setCurrentIndex((prevIndex) => prevIndex + 1);
-      }, 35);
+      }, 40);
 
       return () => {
         clearInterval(timer);
@@ -21,7 +21,7 @@ const Typewriter = ({ text }: TypewriterProps) => {
     }
   }, [currentIndex, text]);
 
-  return <p>{currentText}</p>;
+  return <p className='animate-fade'>{currentText}</p>;
 };
 
 export default Typewriter;

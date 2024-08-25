@@ -16,7 +16,7 @@ const RadialScore = ({ score }: Props) => {
         }
         return nextScore;
       });
-    }, 10);
+    }, 20);
 
     return () => {
       clearInterval(interval);
