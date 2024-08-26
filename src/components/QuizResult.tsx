@@ -11,7 +11,7 @@ type QuizResult = {
   wrongAnswers: number;
 };
 
-const ShowQuizResult = ({ quiz, result }: QuizFormProps) => {
+const QuizResult = ({ quiz, result }: QuizFormProps) => {
   const { questions } = quiz;
 
   const resultInPourcentage = (
@@ -52,4 +52,4 @@ const ShowQuizResult = ({ quiz, result }: QuizFormProps) => {
   );
 };
 
-export default ShowQuizResult;
+export default QuizResult;

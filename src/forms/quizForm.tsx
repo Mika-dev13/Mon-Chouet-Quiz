@@ -17,7 +17,7 @@ import { useState } from 'react';
 import { QuizWithAll } from '@/utils/type';
 import Image from 'next/image';
 import chouet from '../../public/win-chouette.webp';
-import ShowQuizResult from '@/components/ShowQuizResult';
+import QuizResult from '@/components/QuizResult';
 import TypeWriter from '@/components/TypeWriter';
 
 type QuizFormProps = {
@@ -25,10 +25,11 @@ type QuizFormProps = {
   isActive: boolean;
   currentQuestionIndex: number;
   setCurrentQuestionIndex: React.Dispatch<React.SetStateAction<number>>;
-  result: QuizResult;
+  result: QuizResultProps;
   setResult: React.Dispatch<React.SetStateAction<QuizResult>>;
+  hideQuiz: boolean;
 };
-type QuizResult = {
+type QuizResultProps = {
   score: number;
   correctAnswers: number;
   wrongAnswers: number;
@@ -40,11 +41,11 @@ const formSchema = z.object({
 
 const QuizForm = ({
   quiz,
-  isActive,
   currentQuestionIndex,
   setCurrentQuestionIndex,
   result,
   setResult,
+  hideQuiz,
 }: QuizFormProps) => {
   const [selectedAnswer, setselectedAnswer] = useState<string>('');
 
@@ -94,7 +95,7 @@ const QuizForm = ({
 
   return (
     <div className='relative flex-1 bg-cyan-200 px-4 py-4 mb-16 rounded-md'>
-      {!isActive && (
+      {hideQuiz && (
         <div className='absolute z-10 flex items-center bg-cyan-500 inset-0 w-full rounded-md px-16 animate-fade animate-duration-150'>
           <Image
             src={chouet}
@@ -155,7 +156,7 @@ const QuizForm = ({
               </Button>{' '}
             </>
           ) : (
-            <ShowQuizResult quiz={quiz} result={result} />
+            <QuizResult quiz={quiz} result={result} />
           )}
         </form>
       </Form>

@@ -17,6 +17,7 @@ type QuizResult = {
 
 const QuizSection = ({ quiz }: QuizFormProps) => {
   const [isActive, setIsActive] = useState(false);
+  const [hideQuiz, setHideQuiz] = useState(true);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [result, setResult] = useState<QuizResult>({
     score: 0,
@@ -33,6 +34,7 @@ const QuizSection = ({ quiz }: QuizFormProps) => {
         setCurrentQuestionIndex={setCurrentQuestionIndex}
         result={result}
         setResult={setResult}
+        hideQuiz={hideQuiz}
       />
       <TimerBox
         quiz={quiz}
@@ -41,6 +43,8 @@ const QuizSection = ({ quiz }: QuizFormProps) => {
         currentQuestionIndex={currentQuestionIndex}
         setCurrentQuestionIndex={setCurrentQuestionIndex}
         setResult={setResult}
+        hideQuiz={hideQuiz}
+        setHideQuiz={setHideQuiz}
       />
     </section>
   );

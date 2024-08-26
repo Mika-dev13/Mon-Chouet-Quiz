@@ -8,6 +8,8 @@ import {
   Timer as TimerIcon,
 } from 'lucide-react';
 import { QuizWithAll } from '@/utils/type';
+import AlertDialogCustom from './AlertDialogCustom';
+import { set } from 'react-hook-form';
 
 type QuizResult = {
   score: number;
@@ -22,6 +24,8 @@ type TimerBoxProps = {
   currentQuestionIndex: number;
   setResult: React.Dispatch<React.SetStateAction<QuizResult>>;
   quiz: QuizWithAll;
+  hideQuiz: boolean;
+  setHideQuiz: (hideQuiz: boolean) => void;
 };
 
 const TimerBox = ({
@@ -31,17 +35,18 @@ const TimerBox = ({
   setCurrentQuestionIndex,
   currentQuestionIndex,
   setResult,
+  setHideQuiz,
 }: TimerBoxProps) => {
   const [time, setTime] = useState(120);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
-  const [pauseTime, setPauseTime] = useState(false);
 
   const { questions } = quiz;
-  const currentQuestion = questions[currentQuestionIndex];
+  // const currentQuestion = questions[currentQuestionIndex];
 
   const startTimer = () => {
     if (!isActive) {
       setIsActive(true);
+      setHideQuiz(false);
       intervalRef.current = setInterval(() => {
         setTime((prevTime) => {
           if (prevTime <= 1) {
@@ -57,15 +62,17 @@ const TimerBox = ({
 
   const pauseTimer = () => {
     setIsActive(false);
+    setHideQuiz(true);
 
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
     }
   };
 
-  // if (currentQuestionIndex > questions.length - 1) {
-  //   pauseTimer();
-  // }
+  if (currentQuestionIndex > questions.length - 1) {
+    pauseTimer();
+    setHideQuiz(false);
+  }
 
   const resetTimer = () => {
     pauseTimer();
@@ -112,9 +119,10 @@ const TimerBox = ({
           {' '}
           <PauseCircle size='36' color='#65a30d' strokeWidth={1} />
         </button>
-        <button onClick={resetTimer} className='bg-lime-100 p-1 rounded-md'>
+        {/* <button onClick={resetTimer} className='bg-lime-100 p-1 rounded-md'>
           <StopCircle size='36' color='#65a30d' strokeWidth={1} />
-        </button>
+        </button> */}
+        <AlertDialogCustom resetTimer={resetTimer} />
         <div className='flex gap-4 items-center bg-lime-100 p-1 rounded-md'>
           <div className='w-10 text-right'>
             <p className='font-cursive text-red-500'>{formatTime(time)}</p>
