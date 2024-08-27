@@ -18,13 +18,10 @@ const UserNameMenu = async () => {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className='flex items-center gap-2 hover:text-orange-600 p-1 transition-colors'>
-        {/* <CircleUserIcon className='text-stone-600' width={24} /> */}
+      <DropdownMenuTrigger>
         <UserAvatar />
-        <span className='capitalize'>{session && session.user?.name}</span>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
-        <DropdownMenuItem className='hover:bg-transparent'></DropdownMenuItem>
         <DropdownMenuItem className='hover:bg-transparent'>
           <Link
             href='/user-profile'
@@ -33,13 +30,21 @@ const UserNameMenu = async () => {
             Mon profil
           </Link>
         </DropdownMenuItem>
+        <DropdownMenuItem className='hover:bg-transparent'>
+          <Link
+            href={session ? `/dashboard/${session.user?.id}` : '/'}
+            className='font-bold hover:text-orange-600 transition-colors block w-full'
+          >
+            Mon tableau de bord
+          </Link>
+        </DropdownMenuItem>
         <Separator />
-        <DropdownMenuItem>
-          {/* <Button className='flex flex-1' onClick={() => logout()}>
+        {/* <Button className='flex flex-1' onClick={() => logout()}>
             Déconnexion
           </Button> */}
+        <div className='mt-4'>
           <SignOutButton />
-        </DropdownMenuItem>
+        </div>
       </DropdownMenuContent>
     </DropdownMenu>
   );

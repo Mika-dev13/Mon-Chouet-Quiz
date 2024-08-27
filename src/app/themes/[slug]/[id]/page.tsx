@@ -1,8 +1,5 @@
 import Header from '@/components/Header';
 import QuizSection from '@/components/QuizSection';
-import TimerBox from '@/components/TimerBox';
-import { Button } from '@/components/ui/button';
-import QuizForm from '@/forms/QuizForm';
 import prisma from '@/lib/db';
 import { notFound } from 'next/navigation';
 

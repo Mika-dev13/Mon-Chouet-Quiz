@@ -9,7 +9,9 @@ const SignOutButton = () => {
         await signOut();
       }}
     >
-      <Button type='submit'>Déconnexion</Button>
+      <Button type='submit' className='w-full'>
+        Déconnexion
+      </Button>
     </form>
   );
 };
