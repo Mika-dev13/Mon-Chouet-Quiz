@@ -5,8 +5,6 @@ import {
   DropdownMenuTrigger,
 } from './ui/dropdown-menu';
 
-import { CircleUserIcon, User } from 'lucide-react';
-
 import { Separator } from './ui/separator';
 import Link from 'next/link';
 import SignOutButton from './SignOutButton';

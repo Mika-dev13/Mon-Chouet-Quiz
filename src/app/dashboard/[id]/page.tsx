@@ -1,6 +1,8 @@
 import Header from '@/components/Header';
+import { auth } from '../../../../auth';
 
-const UserDashboardPage = () => {
+const UserDashboardPage = async () => {
+  const session = await auth();
   return (
     <>
       <Header />
