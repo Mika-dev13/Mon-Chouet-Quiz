@@ -97,6 +97,7 @@ async function main() {
               : i === 2
               ? moyenLevel.id
               : difficileLevel.id,
+          authorId: user.id,
         },
       });
 

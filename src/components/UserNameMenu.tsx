@@ -37,9 +37,6 @@ const UserNameMenu = async () => {
           </Link>
         </DropdownMenuItem>
         <Separator />
-        {/* <Button className='flex flex-1' onClick={() => logout()}>
-            Déconnexion
-          </Button> */}
         <div className='mt-4'>
           <SignOutButton />
         </div>

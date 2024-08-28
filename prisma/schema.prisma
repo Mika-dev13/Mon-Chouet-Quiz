@@ -21,10 +21,12 @@ model User {
   Authenticator Authenticator[]
   themes        Theme[]
   series        Serie[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  playQuiz      PlayQuiz[]
+  quizzes       Quiz[]
 }
- 
+
 model Account {
   id                String  @id @default(cuid())
   userId            String
@@ -38,34 +40,34 @@ model Account {
   scope             String?
   id_token          String?
   session_state     String?
- 
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
- 
+
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
- 
+
   @@unique([provider, providerAccountId])
 }
- 
+
 model Session {
   id           String   @id @default(cuid())
   sessionToken String   @unique
   userId       String
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
- 
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
- 
+
 model VerificationToken {
   identifier String
   token      String
   expires    DateTime
- 
+
   @@unique([identifier, token])
 }
- 
+
 // Optional for WebAuthn support
 model Authenticator {
   credentialID         String  @unique
@@ -76,96 +78,100 @@ model Authenticator {
   credentialDeviceType String
   credentialBackedUp   Boolean
   transports           String?
- 
+
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
- 
+
   @@id([userId, credentialID])
 }
 
 model Quiz {
-  id        String   @id @default(cuid())
-  title     String   
-  slug      String   @unique
+  id          String        @id @default(cuid())
+  title       String
+  slug        String        @unique
   description String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  private   Boolean? @default(false)
-  themeId   String
-  theme     Theme    @relation(fields: [themeId], references: [id])
-  questions Question[]
-  series    QuizOnserie[]
-  levelId   String
-  level    Level   @relation(fields: [levelId], references: [id])
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  private     Boolean?      @default(false)
+  themeId     String
+  theme       Theme         @relation(fields: [themeId], references: [id])
+  questions   Question[]
+  series      QuizOnserie[]
+  levelId     String
+  level       Level         @relation(fields: [levelId], references: [id])
+  PlayQuiz    PlayQuiz[]
+  authorId    String
+  author      User          @relation(fields: [authorId], references: [id])
 }
 
 model Theme {
-  id        String   @id @default(cuid())
-  title     String   
-  slug      String   @unique
+  id          String     @id @default(cuid())
+  title       String
+  slug        String     @unique
   description String
-  image     String
-  bgColor   String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  private   Boolean? @default(false)
-  quizzes   Quiz[]
-  authorId  String
-  author    User     @relation(fields: [authorId], references: [id])
-  subThemes SubTheme[]
+  image       String
+  bgColor     String?
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  private     Boolean?   @default(false)
+  quizzes     Quiz[]
+  authorId    String
+  author      User       @relation(fields: [authorId], references: [id])
+  subThemes   SubTheme[]
 }
 
 model SubTheme {
-  id        String   @id @default(cuid())
-  title     String   
-  slug      String   @unique
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
   description String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  themeId   String
-  theme     Theme    @relation(fields: [themeId], references: [id])
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  themeId     String
+  theme       Theme    @relation(fields: [themeId], references: [id])
 }
 
 model Question {
-  id        String   @id @default(cuid())
-  title     String   
-  slug      String   @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  private   Boolean? @default(false)
+  id        String     @id @default(cuid())
+  title     String
+  slug      String     @unique
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  private   Boolean?   @default(false)
   quizId    String
-  quiz      Quiz     @relation(fields: [quizId], references: [id])
+  quiz      Quiz       @relation(fields: [quizId], references: [id])
   answers   Answer[]
+  playQuiz  PlayQuiz[]
 }
 
 model Answer {
-  id        String   @id @default(cuid())
+  id         String   @id @default(cuid())
   response   String
-  status Boolean   
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  private   Boolean? @default(false)
+  status     Boolean
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  private    Boolean? @default(false)
   questionId String
   question   Question @relation(fields: [questionId], references: [id])
 }
 
 model Serie {
-  id        String   @id @default(cuid())
-  title     String   
-  slug      String   @unique
+  id          String        @id @default(cuid())
+  title       String
+  slug        String        @unique
   description String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  private   Boolean? @default(false)
-  authorId  String
-  author    User     @relation(fields: [authorId], references: [id])
-  quizzes   QuizOnserie[]
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  private     Boolean?      @default(false)
+  authorId    String
+  author      User          @relation(fields: [authorId], references: [id])
+  quizzes     QuizOnserie[]
 }
 
 model QuizOnserie {
-  quizId    String
-  serieId   String
-  quiz      Quiz     @relation(fields: [quizId], references: [id])
-  serie     Serie    @relation(fields: [serieId], references: [id])
+  quizId     String
+  serieId    String
+  quiz       Quiz     @relation(fields: [quizId], references: [id])
+  serie      Serie    @relation(fields: [serieId], references: [id])
   assignedAt DateTime @default(now())
   assignedBy String
 
@@ -173,7 +179,18 @@ model QuizOnserie {
 }
 
 model Level {
-  id        String   @id @default(cuid())
-  level     String
-  quizzes  Quiz[] 
+  id      String @id @default(cuid())
+  level   String
+  quizzes Quiz[]
+}
+
+model PlayQuiz {
+  id         String    @id @default(cuid())
+  score      Int
+  quizId     String
+  quiz       Quiz      @relation(fields: [quizId], references: [id])
+  Question   Question? @relation(fields: [questionId], references: [id])
+  questionId String?
+  User       User?     @relation(fields: [userId], references: [id])
+  userId     String?
 }
