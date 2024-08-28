@@ -15,7 +15,9 @@ const layout = async ({ children }: { children: React.ReactNode }) => {
         </header>
         <main className='mt-12 px-12 flex-1'>
           <div className='mb-8'>
-            <h1 className='font-semibold text-xl '>Mon tableau de board</h1>
+            <h1 className='font-semibold text-xl uppercase'>
+              Mon tableau de board
+            </h1>
             <p>
               Content de te voir{' '}
               <span className='capitalize'>{fisrtName} !</span> 🎉{' '}

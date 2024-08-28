@@ -7,6 +7,7 @@ const DashboardQuizPage = async () => {
       authorId: 'user-id-1',
     },
     include: {
+      level: true,
       theme: true,
     },
   });
@@ -14,7 +15,7 @@ const DashboardQuizPage = async () => {
   return (
     <div>
       <div>
-        <h1 className='font-semibold text-lg'>Quiz</h1>
+        <h1 className='font-medium text-lg'>Quiz</h1>
       </div>
       <div className='mt-4 space-y-2'>
         {quizzes.map((quiz) => (

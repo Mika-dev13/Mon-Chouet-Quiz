@@ -9,7 +9,7 @@ type Props = {
 
 const DashboardNav = ({ session }: Props) => {
   return (
-    <nav className='flex flex-col items-center justify-between lg:min-h-screen pt-12'>
+    <nav className='flex flex-col items-center justify-between lg:min-h-screen lg:h-full pt-12'>
       <div className='space-y-2'>
         <Link
           href={`/dashboard/${session.user.id}`}
@@ -37,11 +37,11 @@ const DashboardNav = ({ session }: Props) => {
           className='flex items-center gap-2 hover:bg-violet-200 p-2 rounded-md transition-colors'
         >
           <Users width={20} strokeWidth={1} />
-          <span className='text-sm'>Space</span>
+          <span className='text-sm'>Spaces</span>
         </Link>
       </div>
       <div className='space-y-4 mb-4 w-full px-4'>
-        <Separator decorative style={{ backgroundColor: '#a78bfa' }} />
+        <Separator decorative style={{ backgroundColor: '#c4b5fd' }} />
         <Button asChild className='w-full'>
           <Link href='/'>Quitter</Link>
         </Button>

@@ -17,7 +17,9 @@ const UserDashboardPage = async () => {
 
   return (
     <section>
-      <h2 className='text-lg font-semibold mb-4'>Ce que tu as crée</h2>
+      <h2 className='text-lg font-medium mb-4 visually-hidden'>
+        Ce que tu as crée
+      </h2>
       <div className='grid grid-cols-3 gap-4'>
         <DashboardCard
           title='Thème'

@@ -12,6 +12,25 @@ export type QuizWithAll = Prisma.QuizGetPayload<{
   };
 }>;
 
+export type QuizWithThemeAndLevel = Prisma.QuizGetPayload<{
+  include: {
+    theme: true;
+    level: true;
+  };
+}>;
+
+export type ThemeWithAll = Prisma.ThemeGetPayload<{
+  include: {
+    quizzes: {
+      include: {
+        level: true;
+      };
+    };
+  };
+}>;
+
+export type Theme = Prisma.ThemeGetPayload<{}>;
+
 //generic type for the questions
 export type Question = {
   id: number;
