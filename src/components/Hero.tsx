@@ -1,6 +1,7 @@
 import { Button } from './ui/button';
 import Image from 'next/image';
 import chouette from '../../public/maitresse-chouette.webp';
+import Link from 'next/link';
 
 const Hero = () => {
   return (
@@ -12,7 +13,9 @@ const Hero = () => {
         <h2 className='lg:text-2xl lg:mt-8 mb-4 w-[280px] lg:w-full text-right lg:text-left'>
           Développe tes connaissances grâce à des quiz amusants et éducatifs !
         </h2>
-        <Button className='lg:text-base w-fit'>Commencer</Button>
+        <Button asChild className='lg:text-base w-fit'>
+          <Link href='/themes'>Commencer</Link>
+        </Button>
       </div>
       <Image
         src={chouette}

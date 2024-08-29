@@ -27,16 +27,14 @@ const SelectItems = ({ items }: Props) => {
 
     setSelectedItem(value);
 
-    // find the theme slug
     const themeSlug = items.find((item) => item.title === value)?.theme.slug;
+    const selectedItemObj = items.find((item) => item.title === value);
 
-    const selectedThemeObj = items.find((item) => item.title === value);
-    console.log(selectedThemeObj);
-
-    if (selectedThemeObj) {
-      router.push(`/themes/${themeSlug}/${selectedThemeObj.slug}`); // Redirection vers l'URL correspondante
+    if (selectedItemObj) {
+      router.push(`/themes/${themeSlug}/${selectedItemObj.slug}`);
     }
   };
+
   return (
     <div>
       <Select onValueChange={handleChange}>

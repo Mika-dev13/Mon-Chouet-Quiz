@@ -28,7 +28,7 @@ const SelectThemes = ({ themes }: SelectThemesProps) => {
     const selectedThemeObj = themes.find((theme) => theme.title === value);
 
     if (selectedThemeObj) {
-      router.push(`themes/${selectedThemeObj.slug}`); // Redirection vers l'URL correspondante
+      router.push(`/themes/${selectedThemeObj.slug}`);
     }
   };
 

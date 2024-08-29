@@ -30,6 +30,7 @@ const QuizResult = ({ quiz, result }: QuizFormProps) => {
             Nombres de réponses correctes : {result.correctAnswers} /{' '}
             {questions.length}
           </p>
+          <p>Score : {result.score} points</p>
         </div>
         <div className='flex justify-center bg-cyan-100 p-4 rounded-md'>
           <RadialScore score={resultInPourcentage} />

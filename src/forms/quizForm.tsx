@@ -53,9 +53,12 @@ const QuizForm = ({
     resolver: zodResolver(formSchema),
   });
 
-  const { questions } = quiz;
+  const { questions, level } = quiz;
 
   const currentQuestion = questions[currentQuestionIndex];
+  const currentLevel = level.level;
+
+  console.log(currentLevel);
 
   const nextQuestion = () => {
     setCurrentQuestionIndex((prev: number) => prev + 1);
@@ -66,10 +69,24 @@ const QuizForm = ({
       (answer) => answer.status
     );
 
+    // fuction pour incrémenter le score en fonction de level du quiz
+    const incrementScore = (currentLevel: string) => {
+      switch (currentLevel) {
+        case 'Simple':
+          return 1;
+        case 'Moyen':
+          return 3;
+        case 'Difficile':
+          return 5;
+        default:
+          return 0;
+      }
+    };
+
     if (answer === correctAnswer?.response) {
       const newCorrectResult = {
         ...result,
-        score: result.score + 1,
+        score: result.score + incrementScore(currentLevel),
         correctAnswers: result.correctAnswers + 1,
       };
       setResult(newCorrectResult);
