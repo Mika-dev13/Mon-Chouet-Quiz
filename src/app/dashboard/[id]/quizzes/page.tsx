@@ -1,4 +1,6 @@
 import DashboardItemCard from '@/components/DashboardItemCard';
+import DashboardQuizSection from '@/components/DashboardQuizSection';
+import SelectThemes from '@/components/SelectThemes';
 import prisma from '@/lib/db';
 
 const DashboardQuizPage = async () => {
@@ -14,14 +16,7 @@ const DashboardQuizPage = async () => {
 
   return (
     <div>
-      <div>
-        <h1 className='font-medium text-lg'>Quiz</h1>
-      </div>
-      <div className='mt-4 space-y-2'>
-        {quizzes.map((quiz) => (
-          <DashboardItemCard key={quiz.id} data={quiz} />
-        ))}
-      </div>
+      <DashboardQuizSection quizzes={quizzes} />
     </div>
   );
 };

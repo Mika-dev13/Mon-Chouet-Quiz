@@ -15,7 +15,7 @@ type AlertDialogCustomProps = {
   resetTimer: () => void;
 };
 
-const AlertDialogCustom = ({ resetTimer }: AlertDialogCustomProps) => {
+const AlertDialogTimer = ({ resetTimer }: AlertDialogCustomProps) => {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
@@ -39,4 +39,4 @@ const AlertDialogCustom = ({ resetTimer }: AlertDialogCustomProps) => {
   );
 };
 
-export default AlertDialogCustom;
+export default AlertDialogTimer;

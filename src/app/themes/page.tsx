@@ -3,7 +3,7 @@ import SearchTheme from '@/components/SearchTheme';
 import prisma from '@/lib/db';
 
 const ThemesPage = async () => {
-  const themes = await prisma.theme.findMany();
+  const themes = await prisma.theme.findMany({ orderBy: { title: 'asc' } });
 
   return (
     <>

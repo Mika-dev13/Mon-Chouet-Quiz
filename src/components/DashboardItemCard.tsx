@@ -16,10 +16,16 @@ const DashboardItemCard = ({ data }: Props) => {
         {data.level && <span className='text-xs'>{data.level.level}</span>}
       </div>
       <div className='flex gap-4'>
-        <button className='hover:bg-violet-200 transition-colors p-2 rounded-md'>
+        <button
+          className='hover:bg-violet-200 transition-colors p-2 rounded-md'
+          aria-label='Modifier'
+        >
           <Pencil strokeWidth={1} />
         </button>
-        <button className='hover:bg-violet-200 transition-colors p-2 rounded-md'>
+        <button
+          className='hover:bg-violet-200 transition-colors p-2 rounded-md'
+          aria-label='Supprimer'
+        >
           <Trash2 strokeWidth={1} color='#6d28d9' />
         </button>
       </div>

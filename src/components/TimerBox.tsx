@@ -1,15 +1,9 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import {
-  PauseCircle,
-  PlayCircle,
-  StopCircle,
-  Timer as TimerIcon,
-} from 'lucide-react';
+import { PauseCircle, PlayCircle, Timer as TimerIcon } from 'lucide-react';
 import { QuizWithAll } from '@/utils/type';
-import AlertDialogCustom from './AlertDialogCustom';
-import { set } from 'react-hook-form';
+import AlertDialogTimer from './AlertDialogTimer';
 
 type QuizResult = {
   score: number;
@@ -119,10 +113,7 @@ const TimerBox = ({
           {' '}
           <PauseCircle size='36' color='#65a30d' strokeWidth={1} />
         </button>
-        {/* <button onClick={resetTimer} className='bg-lime-100 p-1 rounded-md'>
-          <StopCircle size='36' color='#65a30d' strokeWidth={1} />
-        </button> */}
-        <AlertDialogCustom resetTimer={resetTimer} />
+        <AlertDialogTimer resetTimer={resetTimer} />
         <div className='flex gap-4 items-center bg-lime-100 p-1 rounded-md'>
           <div className='w-10 text-right'>
             <p className='font-cursive text-red-500'>{formatTime(time)}</p>
