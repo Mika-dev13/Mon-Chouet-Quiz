@@ -1,5 +1,6 @@
 import Header from '@/components/Header';
 import QuizSection from '@/components/QuizSection';
+import SelectItems from '@/components/SelectItems';
 import prisma from '@/lib/db';
 import { notFound } from 'next/navigation';
 
@@ -20,6 +21,18 @@ const QuizPage = async ({ params }: QuizPageProps) => {
         slug: slug,
       },
     },
+    include: {
+      theme: true,
+      level: true,
+      questions: {
+        include: {
+          answers: true,
+        },
+      },
+    },
+  });
+
+  const quizzes = await prisma.quiz.findMany({
     include: {
       theme: true,
       level: true,
@@ -65,6 +78,7 @@ const QuizPage = async ({ params }: QuizPageProps) => {
               </p>
             </div>
           </div>
+          <SelectItems items={quizzes} />
         </section>
         <QuizSection quiz={quiz} />
         {/* <Button className='bg-yellow-300 hover:bg-yellow-200 text-stone-800 w-full'>

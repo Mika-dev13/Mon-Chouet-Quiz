@@ -222,8 +222,528 @@ async function main() {
     ],
   });
 
-  // Repeat the above pattern for other quizzes and themes
-  // ...
+  // Theme 2 Quiz 2 Questions and Answers
+  const question1Quiz2Theme1 = await prisma.question.create({
+    data: {
+      id: cuid(),
+      title: `Qui a été le premier roi de France ?`,
+      slug: `premier-roi-france`,
+      quizId: quiz2Theme1.id,
+    },
+  });
+
+  await prisma.answer.createMany({
+    data: [
+      {
+        id: cuid(),
+        response: `Clovis`,
+        status: true, // Cette réponse est correcte
+        questionId: question1Quiz2Theme1.id,
+      },
+      {
+        id: cuid(),
+        response: `Charlemagne`,
+        status: false,
+        questionId: question1Quiz2Theme1.id,
+      },
+      {
+        id: cuid(),
+        response: `Louis XIV`,
+        status: false,
+        questionId: question1Quiz2Theme1.id,
+      },
+    ],
+  });
+
+  const question2Quiz2Theme1 = await prisma.question.create({
+    data: {
+      id: cuid(),
+      title: `Qui a été le roi de France le plus jeune ?`,
+      slug: `roi-france-plus-jeune`,
+      quizId: quiz2Theme1.id,
+    },
+  });
+
+  await prisma.answer.createMany({
+    data: [
+      {
+        id: cuid(),
+        response: `Louis XIII`,
+        status: false,
+        questionId: question2Quiz2Theme1.id,
+      },
+      {
+        id: cuid(),
+        response: `Louis XIV`,
+        status: false,
+        questionId: question2Quiz2Theme1.id,
+      },
+      {
+        id: cuid(),
+        response: `Louis XV`,
+        status: true, // Cette réponse est correcte
+        questionId: question2Quiz2Theme1.id,
+      },
+    ],
+  });
+
+  const question3Quiz2Theme1 = await prisma.question.create({
+    data: {
+      id: cuid(),
+      title: `Qui a été le roi de France le plus âgé ?`,
+      slug: `roi-france-plus-age`,
+      quizId: quiz2Theme1.id,
+    },
+  });
+
+  await prisma.answer.createMany({
+    data: [
+      {
+        id: cuid(),
+        response: `Louis XIV`,
+        status: true, // Cette réponse est correcte
+        questionId: question3Quiz2Theme1.id,
+      },
+      {
+        id: cuid(),
+        response: `Louis XV`,
+        status: false,
+        questionId: question3Quiz2Theme1.id,
+      },
+      {
+        id: cuid(),
+        response: `Louis XVI`,
+        status: false,
+        questionId: question3Quiz2Theme1.id,
+      },
+    ],
+  });
+
+  // Theme 3 Quiz 3 Questions and Answers
+
+  const question1Quiz3Theme1 = await prisma.question.create({
+    data: {
+      id: cuid(),
+      title: `Quelle est la date de début de la Seconde Guerre mondiale ?`,
+      slug: `date-debut-seconde-guerre-mondiale`,
+      quizId: quiz3Theme1.id,
+    },
+  });
+
+  await prisma.answer.createMany({
+    data: [
+      {
+        id: cuid(),
+        response: `1939`,
+        status: true, // Cette réponse est correcte
+        questionId: question1Quiz3Theme1.id,
+      },
+      {
+        id: cuid(),
+        response: `1945`,
+        status: false,
+        questionId: question1Quiz3Theme1.id,
+      },
+      {
+        id: cuid(),
+        response: `1941`,
+        status: false,
+        questionId: question1Quiz3Theme1.id,
+      },
+    ],
+  });
+
+  const question2Quiz3Theme1 = await prisma.question.create({
+    data: {
+      id: cuid(),
+      title: `Qui était le dirigeant de l'Allemagne nazie pendant la Seconde Guerre mondiale ?`,
+      slug: `dirigeant-allemagne-nazie`,
+      quizId: quiz3Theme1.id,
+    },
+  });
+
+  await prisma.answer.createMany({
+    data: [
+      {
+        id: cuid(),
+        response: `Adolf Hitler`,
+        status: true, // Cette réponse est correcte
+        questionId: question2Quiz3Theme1.id,
+      },
+      {
+        id: cuid(),
+        response: `Benito Mussolini`,
+        status: false,
+        questionId: question2Quiz3Theme1.id,
+      },
+      {
+        id: cuid(),
+        response: `Hirohito`,
+        status: false,
+        questionId: question2Quiz3Theme1.id,
+      },
+    ],
+  });
+
+  const question3Quiz3Theme1 = await prisma.question.create({
+    data: {
+      id: cuid(),
+      title: `Quelle est la date de fin de la Seconde Guerre mondiale ?`,
+      slug: `date-fin-seconde-guerre-mondiale`,
+      quizId: quiz3Theme1.id,
+    },
+  });
+
+  await prisma.answer.createMany({
+    data: [
+      {
+        id: cuid(),
+        response: `1945`,
+        status: true, // Cette réponse est correcte
+        questionId: question3Quiz3Theme1.id,
+      },
+      {
+        id: cuid(),
+        response: `1941`,
+        status: false,
+        questionId: question3Quiz3Theme1.id,
+      },
+      {
+        id: cuid(),
+        response: `1939`,
+        status: false,
+        questionId: question3Quiz3Theme1.id,
+      },
+    ],
+  });
+
+  // Theme 2 Quizzes
+  const quiz1Theme2 = await prisma.quiz.create({
+    data: {
+      id: cuid(),
+      title: `La Terre et l'Univers`,
+      slug: `la-terre-et-l-univers`,
+      description: `Un quiz pour tester vos connaissances sur la Terre et l'Univers.`,
+      themeId: theme2.id,
+      levelId: simpleLevel.id,
+      authorId: user.id,
+    },
+  });
+
+  const quiz2Theme2 = await prisma.quiz.create({
+    data: {
+      id: cuid(),
+      title: `Les Animaux`,
+      slug: `les-animaux`,
+      description: `Un quiz pour tester vos connaissances sur les Animaux.`,
+      themeId: theme2.id,
+      levelId: moyenLevel.id,
+      authorId: user.id,
+    },
+  });
+
+  const quiz3Theme2 = await prisma.quiz.create({
+    data: {
+      id: cuid(),
+      title: `Les Plantes`,
+      slug: `les-plantes`,
+      description: `Un quiz pour tester vos connaissances sur les Plantes.`,
+      themeId: theme2.id,
+      levelId: difficileLevel.id,
+      authorId: user.id,
+    },
+  });
+
+  // Theme 2 Quiz 1 Questions and Answers
+  const question1Quiz1Theme2 = await prisma.question.create({
+    data: {
+      id: cuid(),
+      title: `Quelle est la planète la plus proche du Soleil ?`,
+      slug: `planete-plus-proche-soleil`,
+      quizId: quiz1Theme2.id,
+    },
+  });
+
+  await prisma.answer.createMany({
+    data: [
+      {
+        id: cuid(),
+        response: `Vénus`,
+        status: false,
+        questionId: question1Quiz1Theme2.id,
+      },
+      {
+        id: cuid(),
+        response: `Mercure`,
+        status: true, // Cette réponse est correcte
+        questionId: question1Quiz1Theme2.id,
+      },
+      {
+        id: cuid(),
+        response: `Mars`,
+        status: false,
+        questionId: question1Quiz1Theme2.id,
+      },
+    ],
+  });
+
+  const question2Quiz1Theme2 = await prisma.question.create({
+    data: {
+      id: cuid(),
+      title: `Quelle est la planète la plus grande du Système solaire ?`,
+      slug: `planete-plus-grande-systeme-solaire`,
+      quizId: quiz1Theme2.id,
+    },
+  });
+
+  await prisma.answer.createMany({
+    data: [
+      {
+        id: cuid(),
+        response: `Jupiter`,
+        status: true, // Cette réponse est correcte
+        questionId: question2Quiz1Theme2.id,
+      },
+      {
+        id: cuid(),
+        response: `Saturne`,
+        status: false,
+        questionId: question2Quiz1Theme2.id,
+      },
+      {
+        id: cuid(),
+        response: `Neptune`,
+        status: false,
+        questionId: question2Quiz1Theme2.id,
+      },
+    ],
+  });
+
+  const question3Quiz1Theme2 = await prisma.question.create({
+    data: {
+      id: cuid(),
+      title: `Quelle est la planète la plus éloignée du Soleil ?`,
+      slug: `planete-plus-eloignee-soleil`,
+      quizId: quiz1Theme2.id,
+    },
+  });
+
+  await prisma.answer.createMany({
+    data: [
+      {
+        id: cuid(),
+        response: `Neptune`,
+        status: true, // Cette réponse est correcte
+        questionId: question3Quiz1Theme2.id,
+      },
+      {
+        id: cuid(),
+        response: `Uranus`,
+        status: false,
+        questionId: question3Quiz1Theme2.id,
+      },
+      {
+        id: cuid(),
+        response: `Pluton`,
+        status: false,
+        questionId: question3Quiz1Theme2.id,
+      },
+    ],
+  });
+
+  // Theme 2 Quiz 2 Questions and Answers
+  const question1Quiz2Theme2 = await prisma.question.create({
+    data: {
+      id: cuid(),
+      title: `Quel est le plus grand animal terrestre ?`,
+      slug: `plus-grand-animal-terrestre`,
+      quizId: quiz2Theme2.id,
+    },
+  });
+
+  await prisma.answer.createMany({
+    data: [
+      {
+        id: cuid(),
+        response: `Éléphant`,
+        status: true, // Cette réponse est correcte
+        questionId: question1Quiz2Theme2.id,
+      },
+      {
+        id: cuid(),
+        response: `Girafe`,
+        status: false,
+        questionId: question1Quiz2Theme2.id,
+      },
+      {
+        id: cuid(),
+        response: `Rhinocéros`,
+        status: false,
+        questionId: question1Quiz2Theme2.id,
+      },
+    ],
+  });
+
+  const question2Quiz2Theme2 = await prisma.question.create({
+    data: {
+      id: cuid(),
+      title: `Quel est le plus grand animal marin ?`,
+      slug: `plus-grand-animal-marin`,
+      quizId: quiz2Theme2.id,
+    },
+  });
+
+  await prisma.answer.createMany({
+    data: [
+      {
+        id: cuid(),
+        response: `Baleine bleue`,
+        status: true, // Cette réponse est correcte
+        questionId: question2Quiz2Theme2.id,
+      },
+      {
+        id: cuid(),
+        response: `Requin blanc`,
+        status: false,
+        questionId: question2Quiz2Theme2.id,
+      },
+      {
+        id: cuid(),
+        response: `Orque`,
+        status: false,
+        questionId: question2Quiz2Theme2.id,
+      },
+    ],
+  });
+
+  const question3Quiz2Theme2 = await prisma.question.create({
+    data: {
+      id: cuid(),
+      title: `Quel est le plus grand animal volant ?`,
+      slug: `plus-grand-animal-volant`,
+      quizId: quiz2Theme2.id,
+    },
+  });
+
+  await prisma.answer.createMany({
+    data: [
+      {
+        id: cuid(),
+        response: `Condor des Andes`,
+        status: false,
+        questionId: question3Quiz2Theme2.id,
+      },
+      {
+        id: cuid(),
+        response: `Albatros hurleur`,
+        status: true, // Cette réponse est correcte
+        questionId: question3Quiz2Theme2.id,
+      },
+      {
+        id: cuid(),
+        response: `Aigle royal`,
+        status: false,
+        questionId: question3Quiz2Theme2.id,
+      },
+    ],
+  });
+
+  // Theme 2 Quiz 3 Questions and Answers
+  const question1Quiz3Theme2 = await prisma.question.create({
+    data: {
+      id: cuid(),
+      title: `Quelle est la plante la plus grande du monde ?`,
+      slug: `plante-plus-grande-monde`,
+      quizId: quiz3Theme2.id,
+    },
+  });
+
+  await prisma.answer.createMany({
+    data: [
+      {
+        id: cuid(),
+        response: `Bambou`,
+        status: false,
+        questionId: question1Quiz3Theme2.id,
+      },
+      {
+        id: cuid(),
+        response: `Séquoia`,
+        status: false,
+        questionId: question1Quiz3Theme2.id,
+      },
+      {
+        id: cuid(),
+        response: `Palmier`,
+        status: true, // Cette réponse est correcte
+        questionId: question1Quiz3Theme2.id,
+      },
+    ],
+  });
+
+  const question2Quiz3Theme2 = await prisma.question.create({
+    data: {
+      id: cuid(),
+      title: `Quelle est la plante la plus ancienne du monde ?`,
+      slug: `plante-plus-ancienne-monde`,
+      quizId: quiz3Theme2.id,
+    },
+  });
+
+  await prisma.answer.createMany({
+    data: [
+      {
+        id: cuid(),
+        response: `Ginkgo biloba`,
+        status: true, // Cette réponse est correcte
+        questionId: question2Quiz3Theme2.id,
+      },
+      {
+        id: cuid(),
+        response: `Cycas`,
+        status: false,
+        questionId: question2Quiz3Theme2.id,
+      },
+      {
+        id: cuid(),
+        response: `Pin`,
+        status: false,
+        questionId: question2Quiz3Theme2.id,
+      },
+    ],
+  });
+
+  const question3Quiz3Theme2 = await prisma.question.create({
+    data: {
+      id: cuid(),
+      title: `Quelle est la plante la plus haute du monde ?`,
+      slug: `plante-plus-haute-monde`,
+      quizId: quiz3Theme2.id,
+    },
+  });
+
+  await prisma.answer.createMany({
+    data: [
+      {
+        id: cuid(),
+        response: `Bambou`,
+        status: false,
+        questionId: question3Quiz3Theme2.id,
+      },
+      {
+        id: cuid(),
+        response: `Séquoia`,
+        status: true, // Cette réponse est correcte
+        questionId: question3Quiz3Theme2.id,
+      },
+      {
+        id: cuid(),
+        response: `Palmier`,
+        status: false,
+        questionId: question3Quiz3Theme2.id,
+      },
+    ],
+  });
 
   console.log('Seeding terminé.');
 }
