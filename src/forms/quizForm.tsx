@@ -14,14 +14,27 @@ import {
   FormLabel,
 } from '@/components/ui/form';
 import { useState } from 'react';
-import { QuizWithAll } from '@/utils/type';
 import Image from 'next/image';
 import chouet from '../../public/win-chouette.webp';
 import QuizResult from '@/components/QuizResult';
 import TypeWriter from '@/components/TypeWriter';
 
 type QuizFormProps = {
-  quiz: QuizWithAll;
+  quiz: {
+    title: string;
+    level: {
+      level: string;
+    };
+    questions: {
+      id: string;
+      title: string;
+      answers: {
+        id: string;
+        response: string;
+        status: boolean;
+      }[];
+    }[];
+  };
   isActive: boolean;
   currentQuestionIndex: number;
   setCurrentQuestionIndex: React.Dispatch<React.SetStateAction<number>>;

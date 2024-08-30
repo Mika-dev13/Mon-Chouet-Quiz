@@ -17,7 +17,21 @@ type TimerBoxProps = {
   setCurrentQuestionIndex: (index: number) => void;
   currentQuestionIndex: number;
   setResult: React.Dispatch<React.SetStateAction<QuizResult>>;
-  quiz: QuizWithAll;
+  quiz: {
+    title: string;
+    level: {
+      level: string;
+    };
+    questions: {
+      id: string;
+      title: string;
+      answers: {
+        id: string;
+        response: string;
+        status: boolean;
+      }[];
+    }[];
+  };
   hideQuiz: boolean;
   setHideQuiz: (hideQuiz: boolean) => void;
 };

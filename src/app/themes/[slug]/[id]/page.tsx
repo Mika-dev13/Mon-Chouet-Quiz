@@ -1,6 +1,7 @@
 import Header from '@/components/Header';
 import QuizSection from '@/components/QuizSection';
 import SelectItems from '@/components/SelectItems';
+import { getQuiz, getQuizzesAndSlugTheme } from '@/lib/data-service';
 import prisma from '@/lib/db';
 import { notFound } from 'next/navigation';
 
@@ -14,35 +15,8 @@ type QuizPageProps = {
 const QuizPage = async ({ params }: QuizPageProps) => {
   const { slug, id: quizSlug } = params;
 
-  const quiz = await prisma.quiz.findUnique({
-    where: {
-      slug: quizSlug,
-      theme: {
-        slug: slug,
-      },
-    },
-    include: {
-      theme: true,
-      level: true,
-      questions: {
-        include: {
-          answers: true,
-        },
-      },
-    },
-  });
-
-  const quizzes = await prisma.quiz.findMany({
-    include: {
-      theme: true,
-      level: true,
-      questions: {
-        include: {
-          answers: true,
-        },
-      },
-    },
-  });
+  const quizzes = await getQuizzesAndSlugTheme();
+  const quiz = await getQuiz(slug, quizSlug);
 
   if (!quiz) {
     return notFound();

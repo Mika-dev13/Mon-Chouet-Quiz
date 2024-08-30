@@ -2,11 +2,24 @@
 
 import QuizForm from '@/forms/QuizForm';
 import TimerBox from './TimerBox';
-import { QuizWithAll } from '@/utils/type';
 import { useState } from 'react';
 
 type QuizFormProps = {
-  quiz: QuizWithAll;
+  quiz: {
+    title: string;
+    level: {
+      level: string;
+    };
+    questions: {
+      id: string;
+      title: string;
+      answers: {
+        id: string;
+        response: string;
+        status: boolean;
+      }[];
+    }[];
+  };
 };
 
 type QuizResult = {

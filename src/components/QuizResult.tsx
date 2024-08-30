@@ -2,7 +2,18 @@ import { QuizWithAll } from '@/utils/type';
 import RadialScore from './RadialScore';
 
 type QuizFormProps = {
-  quiz: QuizWithAll;
+  quiz: {
+    title: string;
+    questions: {
+      id: string;
+      title: string;
+      answers: {
+        id: string;
+        response: string;
+        status: boolean;
+      }[];
+    }[];
+  };
   result: QuizResult;
 };
 type QuizResult = {

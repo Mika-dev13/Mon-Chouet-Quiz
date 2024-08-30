@@ -11,10 +11,16 @@ import {
   SelectValue,
 } from './ui/select';
 import { useRouter } from 'next/navigation';
-import { QuizWithAll } from '@/utils/type';
 
 type Props = {
-  items: QuizWithAll[];
+  items: {
+    id: string;
+    title: string;
+    slug: string;
+    theme: {
+      slug: string;
+    };
+  }[];
 };
 
 const SelectItems = ({ items }: Props) => {

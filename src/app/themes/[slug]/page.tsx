@@ -1,5 +1,5 @@
 import Header from '@/components/Header';
-import prisma from '@/lib/db';
+import { getThemeBySlug } from '@/lib/data-service';
 import Link from 'next/link';
 
 type ThemePageProps = {
@@ -9,15 +9,7 @@ type ThemePageProps = {
 };
 
 const ThemePage = async ({ params }: ThemePageProps) => {
-  console.log(params);
-  const theme = await prisma.theme.findUnique({
-    where: {
-      slug: params.slug,
-    },
-    include: {
-      quizzes: true,
-    },
-  });
+  const theme = await getThemeBySlug(params.slug);
 
   return (
     <>
