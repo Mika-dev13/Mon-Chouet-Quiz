@@ -1,14 +1,16 @@
-import prisma from '@/lib/db';
 import { auth } from '../../../../auth';
-import DashboardCard from '@/components/DashboardCard';
-import { getNumberOfQuizzesByAuthor } from '@/lib/data-service';
+import DashboardCard from '@/components/dashboard/DashboardCard';
+import {
+  getNumberOfQuizzesByAuthor,
+  getNumberOfThemesByAuthor,
+} from '@/lib/data-service';
 
 const UserDashboardPage = async () => {
   const session = await auth();
 
   const numberOfQuizzes = await getNumberOfQuizzesByAuthor('user-id-1');
 
-  const themes = await prisma.theme.findMany();
+  const numberOfThemes = await getNumberOfThemesByAuthor('user-id-1');
 
   if (!session?.user) return null;
 
@@ -20,7 +22,7 @@ const UserDashboardPage = async () => {
       <div className='grid grid-cols-3 gap-4'>
         <DashboardCard
           title='Thème'
-          number={themes.length}
+          number={numberOfThemes}
           href={`/dashboard/${session.user.id}/themes`}
         />
         <DashboardCard

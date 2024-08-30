@@ -1,55 +1,53 @@
 'use client';
 
+import { isMatch } from '@/utils/stringFormating';
 import { useState } from 'react';
 import DashboardItemCard from './DashboardItemCard';
-import { isMatch } from '@/utils/stringFormating';
-import { Input } from './ui/input';
+import { Input } from '../ui/input';
 
 type Props = {
-  quizzes: {
+  themes: {
     id: string;
     title: string;
-    level: { level: string };
-    theme: { title: string };
   }[];
 };
 
-const DashboardQuizSection = ({ quizzes }: Props) => {
+const DashboardThemesSection = ({ themes }: Props) => {
   const [searchValue, setSearchValue] = useState('');
-  const [filteredQuizzes, setFilteredQuizzes] = useState(quizzes);
+  const [filteredThemes, setFilteredThemes] = useState(themes);
 
   const searchQuiz = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
 
     setSearchValue(value);
 
-    const results = quizzes.filter((quiz) => isMatch(quiz.title, value));
+    const results = themes.filter((theme) => isMatch(theme.title, value));
 
-    setFilteredQuizzes(results);
+    setFilteredThemes(results);
   };
   return (
     <section>
       <div className='flex justify-between items-center'>
-        <h1 className='font-medium text-lg'>Quiz</h1>
+        <h1 className='font-medium text-lg'>Thèmes</h1>
         <div>
           <Input
             id='quiz'
             type='text'
-            placeholder='Rechercher un quiz'
+            placeholder='Rechercher un thème'
             className='w-60'
             onChange={(e) => searchQuiz(e)}
             value={searchValue}
-            aria-label='rechercher-quiz'
+            aria-label='rechercher un thème'
           />
         </div>
       </div>
       <div className='mt-4 space-y-2'>
-        {filteredQuizzes.map((quiz) => (
-          <DashboardItemCard key={quiz.id} data={quiz} />
+        {filteredThemes.map((theme) => (
+          <DashboardItemCard key={theme.id} data={theme} />
         ))}
       </div>
     </section>
   );
 };
 
-export default DashboardQuizSection;
+export default DashboardThemesSection;

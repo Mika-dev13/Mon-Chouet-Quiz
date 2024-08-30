@@ -1,5 +1,6 @@
 import prisma from '@/lib/db';
 import { notFound } from 'next/navigation';
+import { auth } from '../../auth';
 
 // get all themes
 export const getThemes = async () => {
@@ -26,6 +27,21 @@ export const getThemesByUserId = async (userId: string) => {
   return themes;
 };
 
+// get theme by author id
+export const getThemesByAuthor = async (userId: string) => {
+  const theme = await prisma.theme.findMany({
+    where: {
+      authorId: userId,
+    },
+    select: {
+      id: true,
+      title: true,
+    },
+  });
+
+  return theme;
+};
+
 // get themes unique
 export const getThemeBySlug = async (slug: string) => {
   const theme = await prisma.theme.findUnique({
@@ -48,6 +64,18 @@ export const getThemeBySlug = async (slug: string) => {
   if (!theme) notFound();
 
   return theme;
+};
+
+// get number of themes by author id
+export const getNumberOfThemesByAuthor = async (userId: string) => {
+  const numberOfThemes = await prisma.theme.count({
+    where: {
+      authorId: userId,
+    },
+  });
+
+  if (!numberOfThemes) return notFound();
+  return numberOfThemes;
 };
 
 // get all quizzes and slug theme

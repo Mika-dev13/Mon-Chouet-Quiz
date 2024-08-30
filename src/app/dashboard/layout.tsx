@@ -1,6 +1,5 @@
-import DashboardNav from '@/components/DashboardNav';
+import DashboardNav from '@/components/dashboard/DashboardNav';
 import { auth } from '../../../auth';
-
 const layout = async ({ children }: { children: React.ReactNode }) => {
   const session = await auth();
 

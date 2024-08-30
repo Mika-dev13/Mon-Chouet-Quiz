@@ -16,8 +16,8 @@ import {
 import { useState } from 'react';
 import Image from 'next/image';
 import chouet from '../../public/win-chouette.webp';
-import QuizResult from '@/components/QuizResult';
-import TypeWriter from '@/components/TypeWriter';
+import TypeWriter from '@/components/quiz/TypeWriter';
+import QuizResult from '@/components/quiz/QuizResult';
 
 type QuizFormProps = {
   quiz: {

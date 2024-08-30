@@ -1,11 +1,12 @@
+import { Theme } from '@/utils/type';
 import { Pencil, Trash2 } from 'lucide-react';
 
 type Props = {
   data: {
     id: string;
     title: string;
-    level: { level: string };
-    theme: { title: string };
+    level?: { level: string };
+    theme?: { title: string; id: string };
   };
 };
 

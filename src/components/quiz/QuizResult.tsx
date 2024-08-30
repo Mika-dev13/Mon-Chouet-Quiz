@@ -1,4 +1,3 @@
-import { QuizWithAll } from '@/utils/type';
 import RadialScore from './RadialScore';
 
 type QuizFormProps = {

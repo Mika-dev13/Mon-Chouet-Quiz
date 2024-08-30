@@ -1,51 +1,55 @@
 'use client';
 
-import { isMatch } from '@/utils/stringFormating';
 import { useState } from 'react';
-import { Input } from './ui/input';
+import { isMatch } from '@/utils/stringFormating';
 import DashboardItemCard from './DashboardItemCard';
-import { Theme } from '@/utils/type';
+import { Input } from '../ui/input';
 
 type Props = {
-  themes: Theme[];
+  quizzes: {
+    id: string;
+    title: string;
+    level: { level: string };
+    theme: { title: string };
+  }[];
 };
 
-const DashboardThemesSection = ({ themes }: Props) => {
+const DashboardQuizSection = ({ quizzes }: Props) => {
   const [searchValue, setSearchValue] = useState('');
-  const [filteredThemes, setFilteredThemes] = useState(themes);
+  const [filteredQuizzes, setFilteredQuizzes] = useState(quizzes);
 
   const searchQuiz = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
 
     setSearchValue(value);
 
-    const results = themes.filter((theme) => isMatch(theme.title, value));
+    const results = quizzes.filter((quiz) => isMatch(quiz.title, value));
 
-    setFilteredThemes(results);
+    setFilteredQuizzes(results);
   };
   return (
     <section>
       <div className='flex justify-between items-center'>
-        <h1 className='font-medium text-lg'>Thèmes</h1>
+        <h1 className='font-medium text-lg'>Quiz</h1>
         <div>
           <Input
             id='quiz'
             type='text'
-            placeholder='Rechercher un thème'
+            placeholder='Rechercher un quiz'
             className='w-60'
             onChange={(e) => searchQuiz(e)}
             value={searchValue}
-            aria-label='rechercher un thème'
+            aria-label='rechercher-quiz'
           />
         </div>
       </div>
       <div className='mt-4 space-y-2'>
-        {filteredThemes.map((theme) => (
-          <DashboardItemCard key={theme.id} data={theme} />
+        {filteredQuizzes.map((quiz) => (
+          <DashboardItemCard key={quiz.id} data={quiz} />
         ))}
       </div>
     </section>
   );
 };
 
-export default DashboardThemesSection;
+export default DashboardQuizSection;

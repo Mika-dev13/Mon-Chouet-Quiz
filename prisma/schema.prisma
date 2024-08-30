@@ -25,6 +25,7 @@ model User {
   updatedAt     DateTime        @updatedAt
   playQuiz      PlayQuiz[]
   quizzes       Quiz[]
+  role          String          @default("USER")
 }
 
 model Account {

@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { PauseCircle, PlayCircle, Timer as TimerIcon } from 'lucide-react';
-import { QuizWithAll } from '@/utils/type';
 import AlertDialogTimer from './AlertDialogTimer';
 
 type QuizResult = {
