@@ -3,15 +3,15 @@
 import { Input } from '@/components/ui/input';
 import { Theme } from '@prisma/client';
 import ThemeCard from './ThemeCard';
-import { stringToSlug, removeAccents, isMatch } from '@/utils/stringFormating';
+import { stringToSlug, isMatch } from '@/utils/stringFormating';
 import { useState } from 'react';
 import SelectThemes from './SelectThemes';
 
-type SearchThemeProps = {
+type ThemesSectionProps = {
   themes: Theme[];
 };
 
-const SearchTheme = ({ themes }: SearchThemeProps) => {
+const ThemesSection = ({ themes }: ThemesSectionProps) => {
   const [filteredThemes, setFilteredThemes] = useState(themes);
   const [searchValue, setSearchValue] = useState('');
 
@@ -57,4 +57,4 @@ const SearchTheme = ({ themes }: SearchThemeProps) => {
   );
 };
 
-export default SearchTheme;
+export default ThemesSection;

@@ -24,7 +24,7 @@ const DashboardThemesSection = ({ themes }: Props) => {
     setFilteredThemes(results);
   };
   return (
-    <div>
+    <section>
       <div className='flex justify-between items-center'>
         <h1 className='font-medium text-lg'>Thèmes</h1>
         <div>
@@ -44,7 +44,7 @@ const DashboardThemesSection = ({ themes }: Props) => {
           <DashboardItemCard key={theme.id} data={theme} />
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 

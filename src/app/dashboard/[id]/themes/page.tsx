@@ -1,28 +1,10 @@
-import DashboardItemCard from '@/components/DashboardItemCard';
 import DashboardThemesSection from '@/components/DashboardThemesSection';
-import prisma from '@/lib/db';
-import { QuizWithAll, QuizWithThemeAndLevel, ThemeWithAll } from '@/utils/type';
+import { getThemesByUserId } from '@/lib/data-service';
 
 const DashboardThemePage = async () => {
-  const themes = await prisma.theme.findMany({
-    where: {
-      authorId: 'user-id-1',
-    },
-  });
+  const themes = await getThemesByUserId('user-id-1');
 
-  return (
-    <div>
-      {/* <div>
-        <h1 className='font-medium text-lg'>Thèmes</h1>
-      </div>
-      <div className='mt-4 space-y-2'>
-        {themes.map((theme) => (
-          <DashboardItemCard key={theme.id} data={theme} />
-        ))}
-      </div> */}
-      <DashboardThemesSection themes={themes} />
-    </div>
-  );
+  return <DashboardThemesSection themes={themes} />;
 };
 
 export default DashboardThemePage;

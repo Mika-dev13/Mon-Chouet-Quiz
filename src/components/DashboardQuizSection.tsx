@@ -4,10 +4,14 @@ import { useState } from 'react';
 import DashboardItemCard from './DashboardItemCard';
 import { isMatch } from '@/utils/stringFormating';
 import { Input } from './ui/input';
-import { QuizWithThemeAndLevel } from '@/utils/type';
 
 type Props = {
-  quizzes: QuizWithThemeAndLevel[];
+  quizzes: {
+    id: string;
+    title: string;
+    level: { level: string };
+    theme: { title: string };
+  }[];
 };
 
 const DashboardQuizSection = ({ quizzes }: Props) => {
@@ -24,7 +28,7 @@ const DashboardQuizSection = ({ quizzes }: Props) => {
     setFilteredQuizzes(results);
   };
   return (
-    <div>
+    <section>
       <div className='flex justify-between items-center'>
         <h1 className='font-medium text-lg'>Quiz</h1>
         <div>
@@ -44,7 +48,7 @@ const DashboardQuizSection = ({ quizzes }: Props) => {
           <DashboardItemCard key={quiz.id} data={quiz} />
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 

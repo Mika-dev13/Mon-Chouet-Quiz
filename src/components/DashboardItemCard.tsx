@@ -1,8 +1,12 @@
-import { QuizWithThemeAndLevel, Theme } from '@/utils/type';
 import { Pencil, Trash2 } from 'lucide-react';
 
 type Props = {
-  data: QuizWithThemeAndLevel | any;
+  data: {
+    id: string;
+    title: string;
+    level: { level: string };
+    theme: { title: string };
+  };
 };
 
 const DashboardItemCard = ({ data }: Props) => {
@@ -12,8 +16,13 @@ const DashboardItemCard = ({ data }: Props) => {
       className='flex justify-between items-center bg-violet-100 py-2 px-4 rounded-md'
     >
       <div>
-        <h2>{data.title}</h2>
-        {data.level && <span className='text-xs'>{data.level.level}</span>}
+        <h2 className='font-medium'>{data.title}</h2>
+        {data.theme && (
+          <span className='text-xs'>Thème : {data.theme.title} | </span>
+        )}
+        {data.level && (
+          <span className='text-xs'>Niveau : {data.level.level}</span>
+        )}
       </div>
       <div className='flex gap-4'>
         <button

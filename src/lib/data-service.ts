@@ -1,6 +1,30 @@
 import prisma from '@/lib/db';
-import { auth } from '../../auth';
 import { notFound } from 'next/navigation';
+
+// get all themes
+export const getThemes = async () => {
+  const themes = await prisma.theme.findMany({
+    orderBy: {
+      title: 'asc',
+    },
+  });
+
+  return themes;
+};
+
+// get themes by user id
+export const getThemesByUserId = async (userId: string) => {
+  const themes = await prisma.theme.findMany({
+    where: {
+      authorId: userId,
+    },
+    orderBy: {
+      title: 'asc',
+    },
+  });
+
+  return themes;
+};
 
 // get themes unique
 export const getThemeBySlug = async (slug: string) => {
@@ -36,6 +60,31 @@ export const getQuizzesAndSlugTheme = async () => {
       theme: {
         select: {
           slug: true,
+        },
+      },
+    },
+  });
+
+  return quizzes;
+};
+
+// get all quizzes by user id
+export const getQuizzesByAuthor = async (userId: string) => {
+  const quizzes = await prisma.quiz.findMany({
+    where: {
+      authorId: userId,
+    },
+    select: {
+      id: true,
+      title: true,
+      level: {
+        select: {
+          level: true,
+        },
+      },
+      theme: {
+        select: {
+          title: true,
         },
       },
     },
@@ -86,4 +135,15 @@ export const getQuiz = async (slug: string, quizSlug: string) => {
   if (!quiz) notFound();
 
   return quiz;
+};
+
+// get number of quizzes by author id
+export const getNumberOfQuizzesByAuthor = async (userId: string) => {
+  const numberOfQuizzes = await prisma.quiz.count({
+    where: {
+      authorId: userId,
+    },
+  });
+
+  return numberOfQuizzes;
 };

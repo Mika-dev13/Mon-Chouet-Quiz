@@ -1,24 +1,10 @@
-import DashboardItemCard from '@/components/DashboardItemCard';
 import DashboardQuizSection from '@/components/DashboardQuizSection';
-import SelectThemes from '@/components/SelectThemes';
-import prisma from '@/lib/db';
+import { getQuizzesByAuthor } from '@/lib/data-service';
 
 const DashboardQuizPage = async () => {
-  const quizzes = await prisma.quiz.findMany({
-    where: {
-      authorId: 'user-id-1',
-    },
-    include: {
-      level: true,
-      theme: true,
-    },
-  });
+  const quizzes = await getQuizzesByAuthor('user-id-1');
 
-  return (
-    <div>
-      <DashboardQuizSection quizzes={quizzes} />
-    </div>
-  );
+  return <DashboardQuizSection quizzes={quizzes} />;
 };
 
 export default DashboardQuizPage;
