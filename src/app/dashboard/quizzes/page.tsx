@@ -1,5 +1,5 @@
 import DashboardQuizSection from '@/components/dashboard/DashboardQuizSection';
-import { getQuizzesByAuthor } from '@/lib/data-service';
+import { getQuizzesByAuthor } from '@/data-access/quizzes';
 
 const DashboardQuizPage = async () => {
   const quizzes = await getQuizzesByAuthor('user-id-1');

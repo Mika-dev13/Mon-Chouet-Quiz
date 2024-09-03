@@ -8,12 +8,9 @@ import {
 import { Separator } from './ui/separator';
 import Link from 'next/link';
 import SignOutButton from './SignOutButton';
-import { auth } from '../../auth';
 import UserAvatar from './UserAvatar';
 
 const UserNameMenu = async () => {
-  const session = await auth();
-
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
@@ -30,7 +27,7 @@ const UserNameMenu = async () => {
         </DropdownMenuItem>
         <DropdownMenuItem className='hover:bg-transparent'>
           <Link
-            href={session ? `/dashboard/${session.user?.id}` : '/'}
+            href='/dashboard'
             className='font-bold hover:text-orange-600 transition-colors block w-full'
           >
             Mon tableau de bord

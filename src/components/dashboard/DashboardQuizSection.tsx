@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { isMatch } from '@/utils/stringFormating';
 import DashboardItemCard from './DashboardItemCard';
 import { Input } from '../ui/input';
+import { Button } from '../ui/button';
+import Link from 'next/link';
 
 type Props = {
   quizzes: {
@@ -31,7 +33,11 @@ const DashboardQuizSection = ({ quizzes }: Props) => {
     <section>
       <div className='flex justify-between items-center'>
         <h1 className='font-medium text-lg'>Quiz</h1>
-        <div>
+        <div className='flex gap-4'>
+          <Button asChild>
+            <Link href='/dashboard/create-quiz'>Créer un quiz</Link>
+          </Button>
+
           <Input
             id='quiz'
             type='text'

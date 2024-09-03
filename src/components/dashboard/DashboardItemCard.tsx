@@ -1,21 +1,16 @@
-import { Theme } from '@/utils/type';
 import { Pencil, Trash2 } from 'lucide-react';
 
 type Props = {
   data: {
-    id: string;
     title: string;
     level?: { level: string };
-    theme?: { title: string; id: string };
+    theme?: { title: string };
   };
 };
 
 const DashboardItemCard = ({ data }: Props) => {
   return (
-    <div
-      key={data.id}
-      className='flex justify-between items-center bg-violet-100 py-2 px-4 rounded-md'
-    >
+    <div className='flex justify-between items-center bg-violet-100 py-2 px-4 rounded-md'>
       <div>
         <h2 className='font-medium'>{data.title}</h2>
         {data.theme && (

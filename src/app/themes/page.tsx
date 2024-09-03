@@ -1,6 +1,6 @@
 import Header from '@/components/Header';
-import ThemesSection from '@/components/ThemesSection';
-import { getThemes } from '@/lib/data-service';
+import ThemesSection from '@/components/quiz/ThemesSection';
+import { getThemes } from '@/data-access/themes';
 
 const ThemesPage = async () => {
   const themes = await getThemes();

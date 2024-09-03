@@ -71,8 +71,6 @@ const QuizForm = ({
   const currentQuestion = questions[currentQuestionIndex];
   const currentLevel = level.level;
 
-  console.log(currentLevel);
-
   const nextQuestion = () => {
     setCurrentQuestionIndex((prev: number) => prev + 1);
   };

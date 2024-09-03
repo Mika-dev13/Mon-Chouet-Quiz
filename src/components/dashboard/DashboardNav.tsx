@@ -3,37 +3,33 @@ import { Home, LayoutDashboard, SquareCheckBig, Users } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
 
-type Props = {
-  session: any;
-};
-
-const DashboardNav = ({ session }: Props) => {
+const DashboardNav = () => {
   return (
     <nav className='flex flex-col items-center justify-between lg:min-h-screen lg:h-full pt-12'>
       <div className='space-y-2'>
         <Link
-          href={`/dashboard/${session.user.id}`}
+          href={`/dashboard`}
           className='flex items-center gap-2 hover:bg-violet-200 p-2 rounded-md transition-colors'
         >
           <Home width={20} strokeWidth={1} />
           <span className='text-sm'>Accueil</span>
         </Link>
         <Link
-          href={`/dashboard/${session.user.id}/quizzes`}
+          href={`/dashboard/quizzes`}
           className='flex items-center gap-2 hover:bg-violet-200 p-2 rounded-md transition-colors'
         >
           <SquareCheckBig width={20} strokeWidth={1} />
           <span className='text-sm'>Quiz</span>
         </Link>
         <Link
-          href={`/dashboard/${session.user.id}/themes`}
+          href={`/dashboard/themes`}
           className='flex items-center gap-2 hover:bg-violet-200 p-2 rounded-md transition-colors'
         >
           <LayoutDashboard width={20} strokeWidth={1} />
           <span className='text-sm'>Thèmes</span>
         </Link>
         <Link
-          href={`/dashboard/${session.user.id}/spaces`}
+          href={`/dashboard/spaces`}
           className='flex items-center gap-2 hover:bg-violet-200 p-2 rounded-md transition-colors'
         >
           <Users width={20} strokeWidth={1} />

@@ -1,16 +1,20 @@
 import DashboardNav from '@/components/dashboard/DashboardNav';
 import { auth } from '../../../auth';
+import { getUserName } from '@/data-access/user';
+
 const layout = async ({ children }: { children: React.ReactNode }) => {
   const session = await auth();
 
   if (!session?.user) return null;
 
-  const fisrtName = session?.user?.name?.split(' ')[0] ?? '';
+  const userName = await getUserName();
+
+  const fisrtName = userName.split(' ')[0] ?? '';
   return (
     <>
       <div className='flex'>
         <header className='lg:min-h-screen lg:min-w-48 bg-violet-100'>
-          <DashboardNav session={session} />
+          <DashboardNav />
         </header>
         <main className='mt-12 px-12 flex-1'>
           <div className='mb-8'>

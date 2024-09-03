@@ -1,8 +1,7 @@
 import Header from '@/components/Header';
-import QuizSection from '@/components/QuizSection';
+import QuizSection from '@/components/quiz/QuizSection';
 import SelectItems from '@/components/SelectItems';
-import { getQuiz, getQuizzesAndSlugTheme } from '@/lib/data-service';
-import prisma from '@/lib/db';
+import { getQuiz, getQuizzesAndSlugTheme } from '@/data-access/quizzes';
 import { notFound } from 'next/navigation';
 
 type QuizPageProps = {
