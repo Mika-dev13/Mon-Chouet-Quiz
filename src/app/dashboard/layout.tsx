@@ -1,15 +1,10 @@
 import DashboardNav from '@/components/dashboard/DashboardNav';
-import { auth } from '../../../auth';
 import { getUserName } from '@/data-access/user';
 
 const layout = async ({ children }: { children: React.ReactNode }) => {
-  const session = await auth();
-
-  if (!session?.user) return null;
-
   const userName = await getUserName();
 
-  const fisrtName = userName.split(' ')[0] ?? '';
+  const fisrtName = userName?.name?.split(' ')[0] ?? '';
   return (
     <>
       <div className='flex'>

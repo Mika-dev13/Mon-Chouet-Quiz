@@ -8,10 +8,10 @@ const UserAvatar = async () => {
   return (
     <div className='ml-8 flex items-center gap-2 hover:text-orange-600 p-1 transition-colors'>
       <Avatar>
-        <AvatarImage src={userImage} />
+        <AvatarImage src={userImage?.image ?? ''} />
         <AvatarFallback>CN</AvatarFallback>
       </Avatar>
-      <span className='capitalize'>{userName}</span>
+      <span className='capitalize'>{userName?.name}</span>
     </div>
   );
 };

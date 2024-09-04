@@ -1,16 +1,10 @@
-import { auth } from '../../../auth';
 import DashboardCard from '@/components/dashboard/DashboardCard';
 import { getNumberOfThemesByAuthor } from '@/data-access/themes';
 import { getNumberOfQuizzesByAuthor } from '@/data-access/quizzes';
 
 const UserDashboardPage = async () => {
-  const session = await auth();
-
   const numberOfQuizzes = await getNumberOfQuizzesByAuthor('user-id-1');
-
   const numberOfThemes = await getNumberOfThemesByAuthor('user-id-1');
-
-  if (!session?.user) return null;
 
   return (
     <section>
