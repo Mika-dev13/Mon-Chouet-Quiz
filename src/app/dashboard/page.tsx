@@ -4,7 +4,7 @@ import { getNumberOfQuizzesByAuthor } from '@/data-access/quizzes';
 
 const UserDashboardPage = async () => {
   const numberOfQuizzes = await getNumberOfQuizzesByAuthor('user-id-1');
-  const numberOfThemes = await getNumberOfThemesByAuthor('user-id-1');
+  const numberOfThemes = await getNumberOfThemesByAuthor();
 
   return (
     <section>

@@ -5,6 +5,8 @@ import { cache } from 'react';
 // get user id from session
 export const getUserId = cache(async () => {
   const session = await verifySession();
+
+  if (!session) return null;
   try {
     const userId = prisma.user.findUnique({
       where: {

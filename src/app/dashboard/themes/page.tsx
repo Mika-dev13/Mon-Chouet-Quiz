@@ -1,8 +1,10 @@
 import DashboardThemesSection from '@/components/dashboard/DashboardThemesSection';
-import { getThemesByAuthor } from '@/data-access/themes';
+import { getThemeTitleByUserId } from '@/data-access/themes';
 
 const DashboardThemePage = async () => {
-  const themes = await getThemesByAuthor('user-id-1');
+  // const themes = await getThemesByAuthor('user-id-1');
+  // const themes = await getThemesByUserId();
+  const themes = await getThemeTitleByUserId();
 
   return <DashboardThemesSection themes={themes} />;
 };

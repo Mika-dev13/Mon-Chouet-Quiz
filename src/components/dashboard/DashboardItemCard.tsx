@@ -4,7 +4,7 @@ type Props = {
   data: {
     title: string;
     level?: { level: string };
-    theme?: { title: string };
+    theme?: { title: string; id: string };
   };
 };
 
@@ -33,6 +33,7 @@ const DashboardItemCard = ({ data }: Props) => {
         >
           <Trash2 strokeWidth={1} color='#6d28d9' />
         </button>
+        {/* <DeleteButton id={data.theme && data.theme?.id} /> */}
       </div>
     </div>
   );
