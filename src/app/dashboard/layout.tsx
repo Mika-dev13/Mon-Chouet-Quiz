@@ -1,4 +1,4 @@
-import DashboardNav from '@/components/dashboard/DashboardNav';
+import DashboardNav from '@/components/dashboard-components/DashboardNav';
 import { getUserName } from '@/data-access/user';
 
 const layout = async ({ children }: { children: React.ReactNode }) => {

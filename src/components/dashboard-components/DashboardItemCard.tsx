@@ -1,12 +1,14 @@
 import { Pencil, Trash2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { Button } from '../ui/button';
+import DeleteButton from './DeleteButton';
 
 type Props = {
   data: {
     title: string;
+    id: string;
     level?: { level: string };
-    theme?: { title: string; id: string };
+    theme?: { title: string };
   };
 };
 
@@ -16,7 +18,7 @@ const DashboardItemCard = ({ data }: Props) => {
       <div>
         <h2 className='font-medium'>{data.title}</h2>
         {data.theme && (
-          <span className='text-xs'>Thème : {data.theme.title} | </span>
+          <span className='text-xs'>Thème : {data.theme.title} |</span>
         )}
         {data.level && (
           <span className='text-xs'>Niveau : {data.level.level}</span>
@@ -29,13 +31,13 @@ const DashboardItemCard = ({ data }: Props) => {
         >
           <Pencil strokeWidth={1} />
         </button>
-        <button
+        {/* <button
           className='hover:bg-violet-200 transition-colors p-2 rounded-md'
           aria-label='Supprimer'
         >
           <Trash2 strokeWidth={1} color='#6d28d9' />
-        </button>
-        {/* <DeleteButton id={data.theme && data.theme?.id} /> */}
+        </button> */}
+        <DeleteButton id={data.id} />
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import DashboardThemesSection from '@/components/dashboard/DashboardThemesSection';
+import DashboardThemesSection from '@/components/dashboard-components/DashboardThemesSection';
 import { getThemeTitleByUserId } from '@/data-access/themes';
 
 const DashboardThemePage = async () => {

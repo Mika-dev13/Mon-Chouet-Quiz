@@ -1,4 +1,4 @@
-import DashboardQuizSection from '@/components/dashboard/DashboardQuizSection';
+import DashboardQuizSection from '@/components/dashboard-components/DashboardQuizSection';
 import { getQuizzesByAuthor } from '@/data-access/quizzes';
 
 const DashboardQuizPage = async () => {

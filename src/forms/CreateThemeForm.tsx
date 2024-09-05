@@ -16,7 +16,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { createTheme } from '@/data-access/themes';
 import { toast } from 'sonner';
-import { useActionState } from 'react';
+import { useActionState, useEffect } from 'react';
 
 const formSchema = z.object({
   title: z.string().min(3).max(50),
@@ -34,7 +34,38 @@ const CreateThemeForm = () => {
     },
   });
 
-  const [state, action, isPending] = useActionState(createTheme, null);
+  const [error, action, isPending] = useActionState(createTheme, null);
+
+  const date = new Date();
+  const options = {
+    weekday: 'long',
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+  } as Intl.DateTimeFormatOptions;
+  const formattedDate = date.toLocaleDateString('fr-FR', options);
+
+  useEffect(() => {
+    if (error?.errors.title === "Une erreur s'est produite.") {
+      toast.error("Une erreur s'est produite. Veuillez réessayer", {
+        action: {
+          label: 'Fermer',
+          onClick: () => console.log('Undo'),
+        },
+      });
+    } else if (error?.errors.title === 'Le thème a bien été créer.') {
+      toast.success('Le thème a bien été créer.', {
+        description: `Le ${formattedDate}`,
+        action: {
+          label: 'Fermer',
+          onClick: () => console.log('Undo'),
+        },
+      });
+      form.reset();
+    }
+  }, [error, form, formattedDate]);
 
   return (
     <Form {...form}>
@@ -46,7 +77,7 @@ const CreateThemeForm = () => {
             <FormItem>
               <FormLabel>Nom du thème</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input {...field} type='text' minLength={3} required />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -65,30 +96,18 @@ const CreateThemeForm = () => {
                   {...field}
                 />
               </FormControl>
-
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button type='submit' className='mt-8'>
-          Créer le thème
+        <Button
+          type='submit'
+          className='mt-8 disabled:bg-stone-400 disabled:cursor-not-allowed disabled:text-stone-800'
+          disabled={isPending}
+        >
+          {isPending ? 'Création en cours...' : 'Créer le thème'}
         </Button>
       </form>
-      {/* {error && <FormMessage type='error'>{error}</FormMessage>} */}
-      {isPending && <FormMessage>Création en cours...</FormMessage>}
-      <Button
-        onClick={() =>
-          toast('Event has been created', {
-            description: 'Sunday, December 03, 2023 at 9:00 AM',
-            action: {
-              label: 'Undo',
-              onClick: () => console.log('Undo'),
-            },
-          })
-        }
-      >
-        Toast
-      </Button>
     </Form>
   );
 };

@@ -1,4 +1,4 @@
-import DashboardCard from '@/components/dashboard/DashboardCard';
+import DashboardCard from '@/components/dashboard-components/DashboardCard';
 import { getNumberOfThemesByAuthor } from '@/data-access/themes';
 import { getNumberOfQuizzesByAuthor } from '@/data-access/quizzes';
 

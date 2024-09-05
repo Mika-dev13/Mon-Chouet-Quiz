@@ -6,7 +6,6 @@ import { verifySession } from './verifySession';
 import { cache } from 'react';
 import { z } from 'zod';
 import { revalidatePath } from 'next/cache';
-import { toast } from 'sonner';
 
 // get all themes
 export const getThemes = async () => {
@@ -90,19 +89,22 @@ export const getNumberOfThemesByAuthor = async () => {
 // create theme
 const CreateThemeSchema = z.object({
   title: z.string().min(3).max(50),
-  description: z.string().min(3).max(100),
+  description: z.string().max(250),
 });
 
 export const createTheme = async (prevState: any, formData: FormData) => {
   const session = await verifySession();
   await new Promise((resolve) => setTimeout(resolve, 1000));
+
   const validatedData = CreateThemeSchema.safeParse({
     title: formData.get('title'),
     description: formData.get('description'),
   });
 
-  if (!validatedData.success)
+  if (!validatedData.success) {
+    console.log(validatedData.error.flatten().fieldErrors);
     return { errors: validatedData.error.flatten().fieldErrors };
+  }
 
   try {
     await prisma.theme.create({
@@ -115,41 +117,43 @@ export const createTheme = async (prevState: any, formData: FormData) => {
           },
         },
         slug: validatedData.data.title.toLowerCase().replace(/ /g, '-'),
-        image: '',
+        image: null,
       },
     });
 
     revalidatePath('/dashboard/themes');
-
-    // return { success: true };
+    return { errors: { title: 'Le thème a bien été créer.' } };
   } catch (error) {
     console.error('Error creating theme:', error);
-    return { error: 'An error occurred while creating the theme.' };
+    return { errors: { title: "Une erreur s'est produite." } };
   }
 };
 
-// delete theme
-// export const deleteTheme = async (formData: FormData) => {
-//   const session = await verifySession();
+//delete theme by id
+export const deleteTheme = async (id: string) => {
+  const session = await verifySession();
 
-//   const id = formData.get('id');
-//   const theme = await prisma.theme.findUnique({
-//     where: {
-//       id: id,
-//     },
-//   });
+  const theme = await prisma.theme.findUnique({
+    where: {
+      id: id,
+    },
+    select: {
+      authorId: true,
+    },
+  });
 
-//   if (!theme) notFound();
+  if (!theme) return notFound();
+  if (theme.authorId !== session.userId) return redirect('/dashboard/themes');
 
-//   if (theme.authorId !== session.userId) {
-//     return redirect('/dashboard/themes');
-//   }
+  try {
+    await prisma.theme.delete({
+      where: {
+        id: id,
+      },
+    });
 
-//   await prisma.theme.delete({
-//     where: {
-//       id: id,
-//     },
-//   });
-
-//   return theme;
-// };
+    revalidatePath('/dashboard/themes');
+  } catch (error) {
+    console.error('Error deleting theme:', error);
+  }
+};
