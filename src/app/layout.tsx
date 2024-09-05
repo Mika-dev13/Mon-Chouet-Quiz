@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Ribeye, Montserrat } from 'next/font/google';
 import './globals.css';
-import Header from '@/components/Header';
+import { Toaster } from '@/components/ui/sonner';
 
 const ribeye = Ribeye({
   weight: '400',
@@ -28,7 +28,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='fr' className={`${montserrat.variable} ${ribeye.variable}`}>
-      <body className={`${montserrat.className}`}>{children}</body>
+      <body className={`${montserrat.className}`}>
+        {children}
+        <Toaster position='top-right' />
+      </body>
     </html>
   );
 }

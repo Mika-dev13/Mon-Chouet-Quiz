@@ -7,7 +7,6 @@ import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -16,6 +15,8 @@ import {
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { createTheme } from '@/data-access/themes';
+import { toast } from 'sonner';
+import { useActionState } from 'react';
 
 const formSchema = z.object({
   title: z.string().min(3).max(50),
@@ -33,9 +34,11 @@ const CreateThemeForm = () => {
     },
   });
 
+  const [state, action, isPending] = useActionState(createTheme, null);
+
   return (
     <Form {...form}>
-      <form action={createTheme}>
+      <form action={action}>
         <FormField
           control={form.control}
           name='title'
@@ -71,6 +74,21 @@ const CreateThemeForm = () => {
           Créer le thème
         </Button>
       </form>
+      {/* {error && <FormMessage type='error'>{error}</FormMessage>} */}
+      {isPending && <FormMessage>Création en cours...</FormMessage>}
+      <Button
+        onClick={() =>
+          toast('Event has been created', {
+            description: 'Sunday, December 03, 2023 at 9:00 AM',
+            action: {
+              label: 'Undo',
+              onClick: () => console.log('Undo'),
+            },
+          })
+        }
+      >
+        Toast
+      </Button>
     </Form>
   );
 };

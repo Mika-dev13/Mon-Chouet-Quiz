@@ -6,6 +6,7 @@ import { verifySession } from './verifySession';
 import { cache } from 'react';
 import { z } from 'zod';
 import { revalidatePath } from 'next/cache';
+import { toast } from 'sonner';
 
 // get all themes
 export const getThemes = async () => {
@@ -86,14 +87,15 @@ export const getNumberOfThemesByAuthor = async () => {
   return numberOfThemes;
 };
 
-// create theme with author id and verifySession
+// create theme
 const CreateThemeSchema = z.object({
   title: z.string().min(3).max(50),
   description: z.string().min(3).max(100),
 });
-export const createTheme = async (formData: FormData) => {
-  const session = await verifySession();
 
+export const createTheme = async (prevState: any, formData: FormData) => {
+  const session = await verifySession();
+  await new Promise((resolve) => setTimeout(resolve, 1000));
   const validatedData = CreateThemeSchema.safeParse({
     title: formData.get('title'),
     description: formData.get('description'),
@@ -103,7 +105,7 @@ export const createTheme = async (formData: FormData) => {
     return { errors: validatedData.error.flatten().fieldErrors };
 
   try {
-    const theme = await prisma.theme.create({
+    await prisma.theme.create({
       data: {
         title: validatedData.data.title,
         description: validatedData.data.description,
@@ -117,12 +119,13 @@ export const createTheme = async (formData: FormData) => {
       },
     });
 
-    return theme;
+    revalidatePath('/dashboard/themes');
+
+    // return { success: true };
   } catch (error) {
     console.error('Error creating theme:', error);
-    throw error;
+    return { error: 'An error occurred while creating the theme.' };
   }
-  revalidatePath('/dashboard/themes');
 };
 
 // delete theme
