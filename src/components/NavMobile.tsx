@@ -7,7 +7,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from './ui/sheet';
-import { CircleUserRound, Menu, MenuIcon } from 'lucide-react';
+import { MenuIcon } from 'lucide-react';
 import { Separator } from './ui/separator';
 import { Button } from './ui/button';
 
@@ -33,7 +33,7 @@ const NavMobile = () => {
                 <Link href='/'>Accueil</Link>
               </li>
               <li>
-                <Link href='/'>Quiz</Link>
+                <Link href='/themes'>Quiz</Link>
               </li>
               <li>
                 <Link href='/'>Tarifs</Link>

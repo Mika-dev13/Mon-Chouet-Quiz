@@ -31,12 +31,6 @@ const DashboardItemCard = ({ data }: Props) => {
         >
           <Pencil strokeWidth={1} />
         </button>
-        {/* <button
-          className='hover:bg-violet-200 transition-colors p-2 rounded-md'
-          aria-label='Supprimer'
-        >
-          <Trash2 strokeWidth={1} color='#6d28d9' />
-        </button> */}
         <DeleteButton id={data.id} />
       </div>
     </div>

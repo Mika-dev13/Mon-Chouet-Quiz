@@ -63,13 +63,17 @@ const CreateThemeForm = () => {
           onClick: () => console.log('Undo'),
         },
       });
-      form.reset();
     }
-  }, [error, form, formattedDate]);
+  }, [error, formattedDate]);
 
   return (
     <Form {...form}>
-      <form action={action}>
+      <form
+        action={(formData) => {
+          form.reset();
+          action(formData);
+        }}
+      >
         <FormField
           control={form.control}
           name='title'

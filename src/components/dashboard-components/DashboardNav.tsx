@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 
 const DashboardNav = () => {
   return (
-    <nav className='flex flex-col items-center justify-between lg:min-h-screen lg:h-full pt-12'>
+    <nav className='hidden lg:flex flex-col items-center justify-between lg:min-h-screen lg:h-full pt-12'>
       <div className='space-y-2'>
         <Link
           href={`/dashboard`}
