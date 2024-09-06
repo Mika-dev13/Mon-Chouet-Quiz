@@ -94,7 +94,7 @@ model Quiz {
   updatedAt   DateTime      @updatedAt
   private     Boolean?      @default(false)
   themeId     String
-  theme       Theme         @relation(fields: [themeId], references: [id])
+  theme       Theme         @relation(fields: [themeId], references: [id], onDelete: Cascade)
   questions   Question[]
   series      QuizOnserie[]
   levelId     String
@@ -116,7 +116,7 @@ model Theme {
   private     Boolean?   @default(false)
   quizzes     Quiz[]
   authorId    String
-  author      User       @relation(fields: [authorId], references: [id])
+  author      User       @relation(fields: [authorId], references: [id], onDelete: Cascade)
   subThemes   SubTheme[]
 }
 

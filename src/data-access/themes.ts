@@ -6,6 +6,7 @@ import { verifySession } from './verifySession';
 import { cache } from 'react';
 import { z } from 'zod';
 import { revalidatePath } from 'next/cache';
+import { ThemeSchema } from '@/lib/zodSchema';
 
 // get all themes
 export const getThemes = async () => {
@@ -87,16 +88,16 @@ export const getNumberOfThemesByAuthor = async () => {
 };
 
 // create theme
-const CreateThemeSchema = z.object({
-  title: z.string().min(3).max(50),
-  description: z.string().max(250),
-});
+// const ThemeSchema = z.object({
+//   title: z.string().min(3).max(50),
+//   description: z.string().max(250),
+// });
 
 export const createTheme = async (prevState: any, formData: FormData) => {
   const session = await verifySession();
   await new Promise((resolve) => setTimeout(resolve, 1000));
 
-  const validatedData = CreateThemeSchema.safeParse({
+  const validatedData = ThemeSchema.safeParse({
     title: formData.get('title'),
     description: formData.get('description'),
   });

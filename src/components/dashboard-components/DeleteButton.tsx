@@ -6,7 +6,10 @@ import { Trash2 } from 'lucide-react';
 const DeleteButton = ({ id }: { id: string }) => {
   return (
     <button
-      onClick={async () => await deleteTheme(id)}
+      onClick={async () => {
+        await deleteTheme(id);
+        window.location.reload();
+      }}
       className='hover:bg-violet-200 transition-colors p-2 rounded-md'
       aria-label='Supprimer'
     >

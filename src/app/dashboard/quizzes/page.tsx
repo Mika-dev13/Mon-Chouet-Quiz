@@ -2,7 +2,7 @@ import DashboardQuizSection from '@/components/dashboard-components/DashboardQui
 import { getQuizzesByAuthor } from '@/data-access/quizzes';
 
 const DashboardQuizPage = async () => {
-  const quizzes = await getQuizzesByAuthor('user-id-1');
+  const quizzes = await getQuizzesByAuthor();
 
   return <DashboardQuizSection quizzes={quizzes} />;
 };

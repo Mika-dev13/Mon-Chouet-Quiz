@@ -18,7 +18,7 @@ const DashboardItemCard = ({ data }: Props) => {
       <div>
         <h2 className='font-medium'>{data.title}</h2>
         {data.theme && (
-          <span className='text-xs'>Thème : {data.theme.title} |</span>
+          <span className='text-xs'>Thème : {data.theme.title} | </span>
         )}
         {data.level && (
           <span className='text-xs'>Niveau : {data.level.level}</span>
