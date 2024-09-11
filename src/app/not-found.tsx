@@ -9,6 +9,7 @@ export default function NotFound() {
       <p className='text-lg mb-6'>
         Nous ne pouvons donner suite à votre demande.
       </p>
+
       <Link href='/' className='hover:text-violet-600 transition-colors'>
         <span className='text-3xl animate-ping'>🔙</span> To the page
         d&apos;accueil

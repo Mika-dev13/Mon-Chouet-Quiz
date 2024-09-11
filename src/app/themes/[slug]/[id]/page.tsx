@@ -17,7 +17,7 @@ const QuizPage = async ({ params }: QuizPageProps) => {
   const quizzes = await getQuizzesAndSlugTheme();
   const quiz = await getQuiz(slug, quizSlug);
 
-  if (!quiz) {
+  if (!quiz.questions) {
     return notFound();
   }
 
@@ -54,9 +54,6 @@ const QuizPage = async ({ params }: QuizPageProps) => {
           <SelectItems items={quizzes} />
         </section>
         <QuizSection quiz={quiz} />
-        {/* <Button className='bg-yellow-300 hover:bg-yellow-200 text-stone-800 w-full'>
-              Sauvegarder
-            </Button> */}
       </main>
     </>
   );

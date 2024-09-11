@@ -1,5 +1,5 @@
 import DashboardCard from '@/components/dashboard-components/DashboardCard';
-import { getNumberOfThemesByAuthor } from '@/data-access/themes';
+import { getNumberOfThemesByAuthor } from '@/data-access/themes.dal';
 import { getNumberOfQuizzesByAuthor } from '@/data-access/quizzes';
 
 const UserDashboardPage = async () => {

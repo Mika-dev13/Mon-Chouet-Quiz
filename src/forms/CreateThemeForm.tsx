@@ -16,7 +16,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { toast } from 'sonner';
 import { useActionState, useEffect } from 'react';
-import { createThemeService } from '@/services/themesService';
+import { createThemeService } from '@/services/themes.services';
 
 const formSchema = z.object({
   title: z.string().min(3).max(50),

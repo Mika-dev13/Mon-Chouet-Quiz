@@ -1,5 +1,5 @@
 import Header from '@/components/Header';
-import { getThemeBySlug } from '@/data-access/themes';
+import { getThemeBySlug } from '@/data-access/themes.dal';
 import Link from 'next/link';
 
 type ThemePageProps = {
