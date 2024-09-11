@@ -4,9 +4,20 @@ import prisma from '@/lib/db';
 import { notFound, redirect } from 'next/navigation';
 import { verifySession } from './verifySession';
 import { cache } from 'react';
-import { z } from 'zod';
 import { revalidatePath } from 'next/cache';
-import { ThemeSchema } from '@/lib/zodSchema';
+import { stringToSlug } from '@/lib/stringFormating';
+import { Theme } from '@prisma/client';
+
+const themeDto = (themes: Theme[]) => {
+  return themes.map((theme) => ({
+    id: theme.id,
+    title: theme.title,
+    description: theme.description,
+    slug: theme.slug,
+    image: theme.image,
+    bgColor: theme.bgColor,
+  }));
+};
 
 // get all themes
 export const getThemes = async () => {
@@ -16,7 +27,7 @@ export const getThemes = async () => {
     },
   });
 
-  return themes;
+  return themeDto(themes);
 };
 
 // get themes by user id
@@ -83,51 +94,28 @@ export const getNumberOfThemesByAuthor = async () => {
     },
   });
 
-  if (!numberOfThemes) return notFound();
   return numberOfThemes;
 };
 
-// create theme
-// const ThemeSchema = z.object({
-//   title: z.string().min(3).max(50),
-//   description: z.string().max(250),
-// });
-
-export const createTheme = async (prevState: any, formData: FormData) => {
-  const session = await verifySession();
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-
-  const validatedData = ThemeSchema.safeParse({
-    title: formData.get('title'),
-    description: formData.get('description'),
+export const createTheme = async (
+  validatedData: { data: { title: string; description: string } },
+  session: { isAuth?: boolean; userId: any }
+) => {
+  const theme = await prisma.theme.create({
+    data: {
+      title: validatedData.data.title,
+      description: validatedData.data.description,
+      author: {
+        connect: {
+          id: session.userId,
+        },
+      },
+      slug: stringToSlug(validatedData.data.title),
+      image: null,
+    },
   });
 
-  if (!validatedData.success) {
-    console.log(validatedData.error.flatten().fieldErrors);
-    return { errors: validatedData.error.flatten().fieldErrors };
-  }
-
-  try {
-    await prisma.theme.create({
-      data: {
-        title: validatedData.data.title,
-        description: validatedData.data.description,
-        author: {
-          connect: {
-            id: session.userId,
-          },
-        },
-        slug: validatedData.data.title.toLowerCase().replace(/ /g, '-'),
-        image: null,
-      },
-    });
-
-    revalidatePath('/dashboard/themes');
-    return { errors: { title: 'Le thème a bien été créer.' } };
-  } catch (error) {
-    console.error('Error creating theme:', error);
-    return { errors: { title: "Une erreur s'est produite." } };
-  }
+  return theme;
 };
 
 //delete theme by id
@@ -157,4 +145,13 @@ export const deleteTheme = async (id: string) => {
   } catch (error) {
     console.error('Error deleting theme:', error);
   }
+};
+
+// check if theme exist
+export const isThemeExist = async (title: string): Promise<boolean> => {
+  const theme = await prisma.theme.findFirst({
+    where: { title },
+  });
+
+  return theme !== null;
 };

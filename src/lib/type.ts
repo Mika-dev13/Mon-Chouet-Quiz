@@ -29,7 +29,14 @@ export type ThemeWithAll = Prisma.ThemeGetPayload<{
   };
 }>;
 
-export type Theme = Prisma.ThemeGetPayload<{}>;
+export type Theme = {
+  id: string;
+  title: string;
+  description: string;
+  slug: string;
+  image?: string;
+  bgColor?: string;
+};
 
 //generic type for the questions
 export type Question = {

@@ -14,9 +14,9 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { createTheme } from '@/data-access/themes';
 import { toast } from 'sonner';
 import { useActionState, useEffect } from 'react';
+import { createThemeService } from '@/services/themesService';
 
 const formSchema = z.object({
   title: z.string().min(3).max(50),
@@ -34,7 +34,7 @@ const CreateThemeForm = () => {
     },
   });
 
-  const [error, action, isPending] = useActionState(createTheme, null);
+  const [status, action, isPending] = useActionState(createThemeService, null);
 
   const date = new Date();
   const options = {
@@ -48,23 +48,32 @@ const CreateThemeForm = () => {
   const formattedDate = date.toLocaleDateString('fr-FR', options);
 
   useEffect(() => {
-    if (error?.errors.title === "Une erreur s'est produite.") {
-      toast.error("Une erreur s'est produite. Veuillez réessayer", {
-        action: {
-          label: 'Fermer',
-          onClick: () => console.log('Undo'),
-        },
-      });
-    } else if (error?.errors.title === 'Le thème a bien été créer.') {
-      toast.success('Le thème a bien été créer.', {
-        description: `Le ${formattedDate}`,
-        action: {
-          label: 'Fermer',
-          onClick: () => console.log('Undo'),
-        },
-      });
+    if (!status) return;
+
+    if (!status?.success) {
+      toast.error(
+        status.message
+          ? status.message.toString()
+          : "Une erreur s'est produite",
+        {
+          action: {
+            label: 'Fermer',
+            onClick: () => console.log('Undo'),
+          },
+        }
+      );
+
+      return;
     }
-  }, [error, formattedDate]);
+
+    toast.success(status?.message.toString(), {
+      description: `Le ${formattedDate}`,
+      action: {
+        label: 'Fermer',
+        onClick: () => console.log('Undo'),
+      },
+    });
+  }, [status, formattedDate]);
 
   return (
     <Form {...form}>

@@ -7,13 +7,19 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { Theme } from '@/lib/type';
 
-import { Theme } from '@prisma/client';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 type SelectThemesProps = {
-  themes: Theme[];
+  themes: {
+    id: string;
+    title: string;
+    image: string | null;
+    bgColor: string | null;
+    slug: string;
+  }[];
 };
 
 const SelectThemes = ({ themes }: SelectThemesProps) => {

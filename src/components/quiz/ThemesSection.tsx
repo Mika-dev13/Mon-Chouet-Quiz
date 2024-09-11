@@ -1,14 +1,19 @@
 'use client';
 
 import { Input } from '@/components/ui/input';
-import { Theme } from '@prisma/client';
 import ThemeCard from './ThemeCard';
-import { stringToSlug, isMatch } from '@/utils/stringFormating';
+import { stringToSlug, isMatch } from '@/lib/stringFormating';
 import { useState } from 'react';
 import SelectThemes from './SelectThemes';
 
 type ThemesSectionProps = {
-  themes: Theme[];
+  themes: {
+    id: string;
+    title: string;
+    image: string | null;
+    bgColor: string | null;
+    slug: string;
+  }[];
 };
 
 const ThemesSection = ({ themes }: ThemesSectionProps) => {
@@ -44,7 +49,7 @@ const ThemesSection = ({ themes }: ThemesSectionProps) => {
             <ThemeCard
               key={theme.id}
               title={theme.title}
-              image={theme.image}
+              image={theme.image ?? ''}
               href={`/themes/${stringToSlug(theme.title)}`}
               bgColor={theme.bgColor ?? 'bg-gray-100'}
             />

@@ -1,6 +1,6 @@
 'use client';
 
-import { isMatch } from '@/utils/stringFormating';
+import { isMatch } from '@/lib/stringFormating';
 import { useState } from 'react';
 import DashboardItemCard from './DashboardItemCard';
 import { Input } from '../ui/input';

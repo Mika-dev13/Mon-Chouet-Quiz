@@ -4,7 +4,7 @@ import prisma from '@/lib/db';
 import { quizSchema } from '@/lib/zodSchema';
 import { verifySession } from './verifySession';
 import { notFound } from 'next/navigation';
-import { stringToSlug } from '@/utils/stringFormating';
+import { stringToSlug } from '@/lib/stringFormating';
 
 // get all quizzes and slug theme
 export const getQuizzesAndSlugTheme = async () => {
