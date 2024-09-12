@@ -110,8 +110,7 @@ export const createTheme = async (
 // update theme by id
 export const updateThemeById = async (
   id: string,
-  data: { title: string; description: string },
-  session: { userId: string }
+  data: { title: string; description: string }
 ) => {
   const updatedTheme = await prisma.theme.update({
     where: {
