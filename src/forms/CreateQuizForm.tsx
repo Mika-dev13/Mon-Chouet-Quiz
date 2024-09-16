@@ -15,8 +15,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { createQuiz } from '@/data-access/quizzes';
-import { toast } from 'sonner';
-import { useActionState, useEffect } from 'react';
+import { useActionState } from 'react';
 import {
   Select,
   SelectContent,

@@ -1,5 +1,5 @@
 import { getLevels } from '@/data-access/level';
-import { getThemeTitleByUserId } from '@/data-access/themes';
+import { getThemeTitleByUserId } from '@/data-access/themes.dal';
 import CreateQuizForm from '@/forms/CreateQuizForm';
 
 const CreateQuizPage = async () => {
