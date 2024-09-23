@@ -14,7 +14,7 @@ export const createThemeService = async (
   prevState: any,
   formData: FormData
 ) => {
-  await new Promise((resolve) => setTimeout(resolve, 1000));
+  await new Promise((resolve) => setTimeout(resolve, 500));
 
   const validatedData = ThemeSchema.safeParse({
     title: formData.get('title'),
@@ -39,6 +39,7 @@ export const createThemeService = async (
 
   try {
     const theme = await createTheme(validatedData, await verifySession());
+
     return { theme, message: 'Le thème a bien été créer.', success: true };
   } catch (error) {
     console.error('Error creating theme:', error);

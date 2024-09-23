@@ -1,6 +1,6 @@
 'use client';
 
-import { z } from 'zod';
+import { set, z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@/components/ui/button';
@@ -17,23 +17,18 @@ import { Textarea } from '@/components/ui/textarea';
 import { toast } from 'sonner';
 import { useActionState, useEffect } from 'react';
 import { createThemeService } from '@/services/themes.services';
-
-const formSchema = z.object({
-  title: z.string().min(3).max(50),
-  description: z.string().min(3).max(100),
-  color: z.string().min(3).max(6),
-});
+import { ThemeSchema } from '@/lib/zodSchema';
+import { useRouter } from 'next/navigation';
 
 const CreateThemeForm = () => {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof ThemeSchema>>({
+    resolver: zodResolver(ThemeSchema),
     defaultValues: {
       title: '',
       description: '',
-      color: '',
     },
   });
-
+  const router = useRouter();
   const [status, action, isPending] = useActionState(createThemeService, null);
 
   const date = new Date();
@@ -75,12 +70,18 @@ const CreateThemeForm = () => {
     });
   }, [status, formattedDate]);
 
+  const setTime = async () => {
+    await new Promise((resolve) => setTimeout(resolve, 700));
+    router.push('/dashboard/themes');
+  };
+
   return (
     <Form {...form}>
       <form
         action={(formData) => {
           form.reset();
           action(formData);
+          setTime();
         }}
       >
         <FormField

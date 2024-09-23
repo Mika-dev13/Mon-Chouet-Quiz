@@ -7,7 +7,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { Theme } from '@/lib/type';
 
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';

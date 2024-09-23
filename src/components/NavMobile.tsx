@@ -20,10 +20,6 @@ const NavMobile = () => {
         </SheetTrigger>
         <SheetContent>
           <SheetHeader>
-            {/* <span className='flex gap-4 items-center'>
-            <CircleUserRound />
-            John Doe
-          </span> */}
             <SheetTitle className='mb-8'>Mon Chouet&apos; quiz</SheetTitle>
           </SheetHeader>
           <Separator className='mb-4' />

@@ -1,6 +1,4 @@
-import { Pencil, Trash2 } from 'lucide-react';
-import { toast } from 'sonner';
-import { Button } from '../ui/button';
+import { Pencil } from 'lucide-react';
 import DeleteButton from './DeleteButton';
 
 type Props = {
