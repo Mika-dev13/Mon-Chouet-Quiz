@@ -24,8 +24,8 @@ const RadialScore = ({ score }: Props) => {
   }, [score]);
 
   return (
-    <div className=' z-0'>
-      <div className='relative size-40'>
+    <div className='z-0'>
+      <div className='relative size-36 lg:size-40'>
         <svg
           className='size-full -rotate-90'
           viewBox='0 0 36 36'

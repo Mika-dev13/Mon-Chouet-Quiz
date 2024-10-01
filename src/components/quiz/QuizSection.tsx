@@ -40,15 +40,6 @@ const QuizSection = ({ quiz }: QuizFormProps) => {
 
   return (
     <section className='lg:flex justify-between gap-4 lg:mt-16 mt-8'>
-      <QuizForm
-        quiz={quiz}
-        isActive={isActive}
-        currentQuestionIndex={currentQuestionIndex}
-        setCurrentQuestionIndex={setCurrentQuestionIndex}
-        result={result}
-        setResult={setResult}
-        hideQuiz={hideQuiz}
-      />
       <TimerBox
         quiz={quiz}
         isActive={isActive}
@@ -58,6 +49,15 @@ const QuizSection = ({ quiz }: QuizFormProps) => {
         setResult={setResult}
         hideQuiz={hideQuiz}
         setHideQuiz={setHideQuiz}
+      />
+      <QuizForm
+        quiz={quiz}
+        isActive={isActive}
+        currentQuestionIndex={currentQuestionIndex}
+        setCurrentQuestionIndex={setCurrentQuestionIndex}
+        result={result}
+        setResult={setResult}
+        hideQuiz={hideQuiz}
       />
     </section>
   );

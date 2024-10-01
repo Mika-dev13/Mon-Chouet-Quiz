@@ -51,7 +51,7 @@ const QuizResult = ({ quiz, result }: QuizFormProps) => {
         <ul className='mt-2'>
           {questions.map((question, index) => (
             <li key={index} className='flex flex-col'>
-              <span className='font-medium'>{question.title}</span>
+              <span className='font-medium text-balance'>{question.title}</span>
               <span className='text-sm'>
                 {question.answers.find((answer) => answer.status)?.response}
               </span>

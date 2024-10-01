@@ -123,20 +123,20 @@ const QuizForm = ({
   };
 
   return (
-    <div className='relative flex-1 bg-cyan-200 px-4 py-4 mb-16 rounded-md'>
+    <div className='relative flex-1 bg-cyan-200 px-4 py-4 lg:mb-16 mb-4 rounded-md'>
       {hideQuiz && (
-        <div className='absolute z-10 flex items-center bg-cyan-500 inset-0 w-full rounded-md px-16 animate-fade animate-duration-150'>
+        <div className='absolute z-10 flex items-center bg-cyan-500 inset-0 w-full rounded-md lg:px-16 px-8 animate-fade animate-duration-150'>
           <div className='w-32'>
             <Image
               src={chouet}
               alt='Chouette'
               className='object-cover '
-              // width={200}
-              // height={200}
+              width={200}
+              height={200}
               loading='lazy'
             />
           </div>
-          <div className='relative flex items-center justify-center flex-1 bg-cyan-600 text-white lg:text-xl rounded-md p-4 lg:h-[120px]  '>
+          <div className='relative flex items-center justify-center flex-1 bg-cyan-600 text-white lg:text-xl rounded-md p-4 lg:h-[120px] h-[180px]'>
             <TypeWriter text='Hey ! Clique sur le bouton play pour commencer le quiz.' />
             <div className='absolute bottom-1/2 left-0 transform -translate-x-2/3 translate-y-full rotate-90 w-0 h-0 border-t-8 border-t-cyan-600 border-x-8 border-x-transparent'></div>
           </div>
@@ -148,7 +148,7 @@ const QuizForm = ({
             <>
               <div className='flex justify-between items-center mb-4'>
                 <Label className='text-lg'>{currentQuestion.title}</Label>
-                <span className='font-semibold'>
+                <span className='font-semibold hidden lg:block'>
                   {currentQuestionIndex + 1} / {questions.length}
                 </span>
               </div>

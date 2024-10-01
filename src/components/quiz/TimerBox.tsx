@@ -108,7 +108,7 @@ const TimerBox = ({
   };
 
   return (
-    <div>
+    <div className='order-2'>
       <div className='flex gap-4 rounded-md bg-lime-300 px-4 py-2 mb-4'>
         <button
           onClick={startTimer}
