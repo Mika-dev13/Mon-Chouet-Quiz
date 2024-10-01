@@ -4,7 +4,11 @@ import { getThemeTitleByUserId } from '@/data-access/themes.dal';
 const DashboardThemePage = async () => {
   const themes = await getThemeTitleByUserId();
 
-  return <DashboardThemesSection themes={themes} />;
+  return (
+    <main>
+      <DashboardThemesSection themes={themes} />
+    </main>
+  );
 };
 
 export default DashboardThemePage;

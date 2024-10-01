@@ -42,7 +42,7 @@ const SelectItems = ({ items }: Props) => {
   };
 
   return (
-    <div>
+    <div className='lg:mt-0 mt-4'>
       <Select onValueChange={handleChange}>
         <SelectTrigger className='w-[180px]'>
           <SelectValue placeholder='Choisis un quiz' />

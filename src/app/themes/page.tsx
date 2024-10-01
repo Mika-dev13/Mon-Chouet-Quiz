@@ -8,7 +8,7 @@ const ThemesPage = async () => {
   return (
     <>
       <Header />
-      <main className='lg:w-[1080px] mx-auto mt-16'>
+      <main className='lg:w-[1080px] mx-auto mt-16 px-6 lg:px-0'>
         <h1 className='text-2xl font-semibold mb-8'>Themes</h1>
         <ThemesSection themes={themes} />
       </main>

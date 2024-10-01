@@ -8,6 +8,7 @@ import {
 } from '@/data-access/themes.dal';
 import { verifySession } from '@/data-access/verifySession';
 import { ThemeSchema } from '@/lib/zodSchema';
+import { z } from 'zod';
 
 // create theme service
 export const createThemeService = async (
@@ -48,57 +49,58 @@ export const createThemeService = async (
 };
 
 // update theme service
-// export const updateThemeService = async (id: string, formData: FormData) => {
-//   await new Promise((resolve) => setTimeout(resolve, 1000));
+export const updateThemeService = async (
+  prevState: any,
+  formData: FormData
+) => {
+  await new Promise((resolve) => setTimeout(resolve, 500));
+  const ThemeSchema = z.object({
+    title: z.string().min(3).max(50),
+    description: z.string().max(250),
+    id: z.string().min(3).max(50),
+  });
 
-//   const validatedData = ThemeSchema.safeParse({
-//     title: formData.get('title'),
-//     description: formData.get('description'),
-//   });
+  const validatedData = ThemeSchema.safeParse({
+    title: formData.get('title'),
+    description: formData.get('description'),
+    id: formData.get('id'),
+  });
+  console.log('validatedData', validatedData);
 
-//   if (!validatedData.success) {
-//     return {
-//       message: validatedData.error.flatten().fieldErrors,
-//       success: false,
-//     };
-//   }
+  if (!validatedData.success) {
+    return {
+      message: validatedData.error.flatten().fieldErrors,
+      success: false,
+    };
+  }
+  console.log('formData', formData);
+  const theme = await getThemeById(validatedData.data.id);
 
-//   const theme = await getThemeById(id);
+  if (!theme) {
+    return {
+      message: "Le thème n'existe pas",
+      success: false,
+    };
+  }
 
-//   if (!theme) {
-//     return {
-//       message: "Le thème n'existe pas",
-//       success: false,
-//     };
-//   }
+  try {
+    await updateThemeById(validatedData.data.id, {
+      title: validatedData.data.title,
+      description: validatedData.data.description,
+    });
 
-//   if (theme.title !== validatedData.data.title) {
-//     const themeExist = await isThemeExist(validatedData.data.title);
-
-//     if (themeExist) {
-//       return {
-//         message: 'Ce thème existe déjà. Veuillez changez de nom.',
-//         success: false,
-//       };
-//     }
-//   }
-
-//   try {
-//     const updatedTheme = await updateThemeById(
-//       id,
-//       validatedData.data,
-//       await verifySession()
-//     );
-//     return {
-//       theme: updatedTheme,
-//       message: 'Le thème a bien été mis à jour.',
-//       success: true,
-//     };
-//   } catch (error) {
-//     console.error('Error updating theme:', error);
-//     return { message: "Une erreur s'est produite.", success: false };
-//   }
-// };
+    return {
+      message: 'Le thème a bien été mis à jour.',
+      success: true,
+    };
+  } catch (error) {
+    console.error('Error updating theme:', error);
+    return {
+      message: "Une erreur s'est produite",
+      success: false,
+    };
+  }
+};
 
 // delete theme service
 export const deleteThemeService = async (id: string) => {

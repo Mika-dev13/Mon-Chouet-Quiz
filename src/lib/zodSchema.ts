@@ -1,7 +1,10 @@
 import { z } from 'zod';
 
 export const ThemeSchema = z.object({
-  title: z.string().min(3).max(50),
+  title: z
+    .string()
+    .min(3, { message: 'Le titre doit contenir au minimum 3 caractères.' })
+    .max(50),
   description: z.string().max(250),
 });
 

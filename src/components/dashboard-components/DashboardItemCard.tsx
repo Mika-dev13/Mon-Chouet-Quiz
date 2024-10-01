@@ -1,5 +1,6 @@
 import { Pencil } from 'lucide-react';
 import DeleteButton from './DeleteButton';
+import Link from 'next/link';
 
 type Props = {
   data: {
@@ -22,13 +23,14 @@ const DashboardItemCard = ({ data }: Props) => {
           <span className='text-xs'>Niveau : {data.level.level}</span>
         )}
       </div>
-      <div className='flex gap-4'>
-        <button
+      <div className='flex gap-1'>
+        <Link
+          href={`/dashboard/update-theme/${data.id}`}
           className='hover:bg-violet-200 transition-colors p-2 rounded-md'
           aria-label='Modifier'
         >
           <Pencil strokeWidth={1} />
-        </button>
+        </Link>
         <DeleteButton id={data.id} />
       </div>
     </div>

@@ -31,8 +31,8 @@ const DashboardQuizSection = ({ quizzes }: Props) => {
   };
   return (
     <section>
-      <div className='flex justify-between items-center'>
-        <h1 className='font-medium text-lg'>Quiz</h1>
+      <div className='lg:flex justify-between items-center'>
+        <h1 className='font-medium text-lg lg:mb-0 mb-4'>Quiz</h1>
         <div className='flex gap-4'>
           <Button asChild>
             <Link href='/dashboard/create-quiz'>Créer un quiz</Link>

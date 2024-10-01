@@ -28,9 +28,9 @@ const DashboardThemesSection = ({ themes }: Props) => {
     setFilteredThemes(results);
   };
   return (
-    <section>
-      <div className='flex justify-between items-center'>
-        <h1 className='font-medium text-lg'>Thèmes</h1>
+    <section className='relative'>
+      <div className='lg:flex justify-between items-center'>
+        <h1 className='lg:mb-0 mb-4 font-medium text-lg'>Thèmes</h1>
         <div className='flex gap-4'>
           <Button asChild>
             <Link href='/dashboard/create-theme'>Créer un thème</Link>

@@ -39,7 +39,7 @@ const QuizSection = ({ quiz }: QuizFormProps) => {
   });
 
   return (
-    <section className='flex justify-between gap-4 mt-16'>
+    <section className='lg:flex justify-between gap-4 lg:mt-16 mt-8'>
       <QuizForm
         quiz={quiz}
         isActive={isActive}

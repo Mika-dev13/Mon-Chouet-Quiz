@@ -1,7 +1,7 @@
 import Header from '@/components/Header';
 import QuizSection from '@/components/quiz/QuizSection';
 import SelectItems from '@/components/SelectItems';
-import { getQuiz, getQuizzesAndSlugTheme } from '@/data-access/quizzes';
+import { getQuiz, getQuizzesAndSlugTheme } from '@/data-access/quizzes.dal';
 import { notFound } from 'next/navigation';
 
 type QuizPageProps = {
@@ -24,8 +24,8 @@ const QuizPage = async ({ params }: QuizPageProps) => {
   return (
     <>
       <Header />
-      <main className='lg:w-[1080px] mx-auto mt-16'>
-        <section className='flex justify-between'>
+      <main className='lg:w-[1080px] mx-auto mt-16 px-6 lg:px-0'>
+        <section className='lg:flex justify-between'>
           <div>
             <h1 className='text-xl font-semibold'>
               {quiz.theme.title} : {quiz?.title}

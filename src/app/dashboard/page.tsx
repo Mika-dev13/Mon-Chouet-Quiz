@@ -1,6 +1,6 @@
 import DashboardCard from '@/components/dashboard-components/DashboardCard';
 import { getNumberOfThemesByAuthor } from '@/data-access/themes.dal';
-import { getNumberOfQuizzesByAuthor } from '@/data-access/quizzes';
+import { getNumberOfQuizzesByAuthor } from '@/data-access/quizzes.dal';
 
 const UserDashboardPage = async () => {
   const numberOfQuizzes = await getNumberOfQuizzesByAuthor('user-id-1');

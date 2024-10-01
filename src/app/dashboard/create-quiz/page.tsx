@@ -1,4 +1,4 @@
-import { getLevels } from '@/data-access/level';
+import { getLevels } from '@/data-access/level.dal';
 import { getThemeTitleByUserId } from '@/data-access/themes.dal';
 import CreateQuizForm from '@/forms/CreateQuizForm';
 

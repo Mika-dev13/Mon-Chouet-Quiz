@@ -32,7 +32,7 @@ const ThemesSection = ({ themes }: ThemesSectionProps) => {
   };
   return (
     <>
-      <div className='mb-8 flex gap-4'>
+      <div className='mb-8 flex gap-2'>
         <SelectThemes themes={themes} />
         <Input
           type='text'
@@ -43,7 +43,7 @@ const ThemesSection = ({ themes }: ThemesSectionProps) => {
         />
       </div>
 
-      <div className='grid grid-cols-4 gap-4 mb-32'>
+      <div className='lg:grid grid-cols-4 gap-4 mb-32'>
         {filteredThemes.length > 0 ? (
           filteredThemes.map((theme) => (
             <ThemeCard
@@ -51,7 +51,7 @@ const ThemesSection = ({ themes }: ThemesSectionProps) => {
               title={theme.title}
               image={theme.image ?? ''}
               href={`/themes/${stringToSlug(theme.title)}`}
-              bgColor={theme.bgColor ?? 'bg-gray-100'}
+              bgColor={theme.bgColor ?? '#fafaf9'}
             />
           ))
         ) : (

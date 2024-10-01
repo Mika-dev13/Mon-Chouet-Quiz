@@ -1,6 +1,6 @@
 'use client';
 
-import { set, z } from 'zod';
+import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@/components/ui/button';
@@ -43,6 +43,10 @@ const CreateThemeForm = () => {
   const formattedDate = date.toLocaleDateString('fr-FR', options);
 
   useEffect(() => {
+    const setTime = async () => {
+      await new Promise((resolve) => setTimeout(resolve, 700));
+      router.push('/dashboard/themes');
+    };
     if (!status) return;
 
     if (!status?.success) {
@@ -68,12 +72,8 @@ const CreateThemeForm = () => {
         onClick: () => console.log('Undo'),
       },
     });
-  }, [status, formattedDate]);
-
-  const setTime = async () => {
-    await new Promise((resolve) => setTimeout(resolve, 700));
-    router.push('/dashboard/themes');
-  };
+    setTime();
+  }, [status, formattedDate, router]);
 
   return (
     <Form {...form}>
@@ -81,7 +81,6 @@ const CreateThemeForm = () => {
         action={(formData) => {
           form.reset();
           action(formData);
-          setTime();
         }}
       >
         <FormField
@@ -91,7 +90,7 @@ const CreateThemeForm = () => {
             <FormItem>
               <FormLabel>Nom du thème</FormLabel>
               <FormControl>
-                <Input {...field} type='text' minLength={3} required />
+                <Input {...field} minLength={3} required />
               </FormControl>
               <FormMessage />
             </FormItem>

@@ -126,16 +126,18 @@ const QuizForm = ({
     <div className='relative flex-1 bg-cyan-200 px-4 py-4 mb-16 rounded-md'>
       {hideQuiz && (
         <div className='absolute z-10 flex items-center bg-cyan-500 inset-0 w-full rounded-md px-16 animate-fade animate-duration-150'>
-          <Image
-            src={chouet}
-            alt='Chouette'
-            className='object-cover'
-            width={200}
-            height={200}
-            loading='lazy'
-          />
-          <div className='relative flex items-center justify-center flex-1 bg-cyan-600 text-white text-xl rounded-md p-4 h-[120px] '>
-            <TypeWriter text='Hey ! Clique sur le bouton à droite pour commencer le quiz.' />
+          <div className='w-32'>
+            <Image
+              src={chouet}
+              alt='Chouette'
+              className='object-cover '
+              // width={200}
+              // height={200}
+              loading='lazy'
+            />
+          </div>
+          <div className='relative flex items-center justify-center flex-1 bg-cyan-600 text-white lg:text-xl rounded-md p-4 lg:h-[120px]  '>
+            <TypeWriter text='Hey ! Clique sur le bouton play pour commencer le quiz.' />
             <div className='absolute bottom-1/2 left-0 transform -translate-x-2/3 translate-y-full rotate-90 w-0 h-0 border-t-8 border-t-cyan-600 border-x-8 border-x-transparent'></div>
           </div>
         </div>

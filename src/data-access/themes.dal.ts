@@ -5,17 +5,19 @@ import { notFound, redirect } from 'next/navigation';
 import { verifySession } from './verifySession';
 import { cache } from 'react';
 import { stringToSlug } from '@/lib/stringFormating';
-
 import { themeDto } from '@/dto/theme.dto';
 
 // get all themes
 export const getThemes = async () => {
+  const session = await verifySession();
   const themes = await prisma.theme.findMany({
+    where: {
+      OR: [{ authorId: 'user-id-1' }, { authorId: session.userId }],
+    },
     orderBy: {
       title: 'asc',
     },
   });
-
   return themeDto(themes);
 };
 
@@ -136,6 +138,8 @@ export const getThemeById = async (id: string) => {
     select: {
       authorId: true,
       title: true,
+      description: true,
+      id: true,
     },
   });
 };

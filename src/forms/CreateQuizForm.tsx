@@ -14,7 +14,7 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { createQuiz } from '@/data-access/quizzes';
+import { createQuiz } from '@/data-access/quizzes.dal';
 import { useActionState } from 'react';
 import {
   Select,
